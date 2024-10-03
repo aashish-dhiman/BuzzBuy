@@ -10,6 +10,7 @@ import SeoData from "../../SEO/SeoData";
 import SideFilter from "../../components/ProductListing/SideFilter";
 import { useAuth } from "../../context/auth";
 import { makeStyles } from "@mui/styles";
+import productNotFound from "../../assets/images/order-not-found.png";
 
 const useStyles = makeStyles(() => ({
     ul: {
@@ -132,11 +133,11 @@ const Products = () => {
 
     return (
         <>
-            <SeoData title="All Products | Flipkart" />
+            <SeoData title="All Products | BuzzBuy" />
 
-            <main className="w-full pt-2 pb-5 sm:mt-0">
+            <main className="w-full py-2">
                 {/* <!-- row --> */}
-                <div className="flex gap-3 mt-2 sm:mt-2 sm:mx-3 m-auto ">
+                <div className="flex gap-3 mt-2 sm:mx-3 mx-auto ">
                     {/* <!-- sidebar column  --> */}
                     <SideFilter
                         price={price}
@@ -152,17 +153,17 @@ const Products = () => {
                     <div className="flex-1 relative ">
                         {/* No products found */}
                         {!loading && products?.length === 0 && (
-                            <div className="flex flex-col items-center justify-start gap-3 bg-white shadow-sm rounded-sm p-6 sm:p-16 sm:min-h-[750px] ">
+                            <div className="flex flex-col items-center justify-start gap-5 bg-white shadow-sm rounded-sm p-6 sm:p-16 sm:min-h-[750px] ">
                                 <img
                                     draggable="true"
-                                    className="w-1/2 h-44 object-contain"
-                                    src="https://static-assets-web.flixcart.com/www/linchpin/fk-cp-zion/img/error-no-search-results_2353c5.png"
+                                    className="w-[250px] h-[250px] object-contain"
+                                    src={productNotFound}
                                     alt="Search Not Found"
                                 />
                                 <h1 className="text-2xl font-medium text-gray-900">
                                     Sorry, no results found!
                                 </h1>
-                                <p className="text-xl text-center text-primary-grey">
+                                <p className="text-base sm:text-xl text-center text-slate-500 -mt-2">
                                     Please check the spelling or try searching
                                     for something else.
                                 </p>

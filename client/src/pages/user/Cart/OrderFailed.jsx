@@ -32,14 +32,14 @@ const OrderFailed = () => {
                         <h1 className="text-2xl font-semibold">
                             Transaction Failed
                         </h1>
-                        <ErrorOutlineIcon className="text-red-600" />
+                        <ErrorOutlineIcon className="text-primary" />
                     </div>
                     <p className="mt-4 text-lg text-gray-800">
                         Redirecting to cart in {time} sec
                     </p>
                     <Link
                         to="/cart"
-                        className="bg-primaryBlue mt-2 py-2.5 px-6 text-white uppercase shadow hover:shadow-lg rounded-sm"
+                        className="bg-primary mt-2 py-2.5 px-6 text-white uppercase shadow hover:shadow-lg rounded-sm"
                     >
                         go to cart
                     </Link>

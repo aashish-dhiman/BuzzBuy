@@ -5,9 +5,10 @@ import Spinner from "../../components/Spinner";
 import axios from "axios";
 import { useAuth } from "../../context/auth";
 import SeoData from "../../SEO/SeoData";
+import orderNotFound from "../../assets/images/order-not-found.png";
 
 const AdminOrders = () => {
-    const {auth} = useAuth();
+    const { auth } = useAuth();
     const [search, setSearch] = useState("");
     const [loading, setLoading] = useState(false);
     const [orders, setOrders] = useState([]);
@@ -27,7 +28,6 @@ const AdminOrders = () => {
                         },
                     }
                 );
-                console.log(response.data.orders);
                 if (response?.data?.orders) {
                     setOrders(response.data.orders);
                     setLoading(false);
@@ -52,7 +52,7 @@ const AdminOrders = () => {
                         <Spinner />
                     ) : (
                         <div className="flex flex-col gap-3 w-full pb-5 overflow-hidden">
-                            {/* <!-- searchbar --> */}
+                            {/* <!-- search hbar --> */}
                             <form
                                 // onSubmit={searchOrders}
                                 className="flex items-center justify-between mx-auto w-[100%] sm:w-10/12 bg-white border rounded mb-2 hover:shadow-md"
@@ -67,7 +67,7 @@ const AdminOrders = () => {
                                 />
                                 <button
                                     type="submit"
-                                    className="h-full text-sm px-1 sm:px-4 py-2.5 text-white bg-primaryBlue hover:bg-blue-600 rounded-r flex items-center gap-1"
+                                    className="h-full text-sm px-1 sm:px-4 py-2.5 text-white bg-primary hover:bg-primary/90 rounded-r flex items-center gap-1"
                                 >
                                     <SearchIcon sx={{ fontSize: "20px" }} />
                                     <p className="text-[10px] sm:text-[14px]">
@@ -81,8 +81,9 @@ const AdminOrders = () => {
                                 <div className="flex items-center flex-col gap-2 p-10 bg-white rounded-sm ">
                                     <img
                                         draggable="false"
-                                        src="https://rukminim1.flixcart.com/www/100/100/promos/23/08/2020/c5f14d2a-2431-4a36-b6cb-8b5b5e283d4f.png"
+                                        src={orderNotFound}
                                         alt="Empty Orders"
+                                        className="w-[200px] h-[200px]"
                                     />
                                     <span className="text-lg font-medium">
                                         Sorry, no orders found

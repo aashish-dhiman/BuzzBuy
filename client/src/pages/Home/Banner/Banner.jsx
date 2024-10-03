@@ -45,13 +45,13 @@ const Banner = () => {
 
     return (
         <>
-            <section className="w-full rounded-sm shadow p-0 overflow-hidden mt-3 sm:m-2">
+            <section className="w-full rounded-md shadow-md p-0 overflow-hidden h-full pt-1 bg-white">
                 <Slider {...settings}>
                     {banners.map((el, i) => (
                         <Link key={i} to="./products">
                             <img
                                 draggable="false"
-                                className="sm:h-[280px] w-full object-contain md:object-cover "
+                                className="sm:h-[280px] w-full object-contain md:object-cover rounded-md px-1"
                                 src={el}
                                 alt="banner"
                             />

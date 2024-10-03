@@ -30,7 +30,6 @@ const OrderDetails = () => {
                         },
                     }
                 );
-                console.log(...response.data.orderDetails);
                 if (response?.data?.orderDetails) {
                     setOrderDetails(...response.data.orderDetails);
                     setLoading(false);
@@ -70,7 +69,7 @@ const OrderDetails = () => {
                                         <h4 className="font-medium">
                                             {buyer?.name}
                                         </h4>
-                                        <p className="text-sm">{`${shippingInfo?.address}, ${shippingInfo?.city}, ${shippingInfo?.state} - ${shippingInfo?.pincode}`}</p>
+                                        <p className="text-sm">{`${shippingInfo?.address}, ${shippingInfo?.landmark}, ${shippingInfo?.city}, ${shippingInfo?.state} - ${shippingInfo?.pincode}`}</p>
                                         <div className="flex gap-2 text-sm">
                                             <p className="font-medium">Email</p>
                                             <p>{buyer?.email}</p>
@@ -94,7 +93,7 @@ const OrderDetails = () => {
                                             </span>
                                             <Link
                                                 to="/"
-                                                className="bg-white py-2 px-4 w-[150px] text-center text-primaryBlue uppercase rounded-sm text-[12px] font-[600] border-[1px] border-gray-200"
+                                                className="bg-white py-2 px-4 w-[150px] text-center text-primary hover:bg-primary hover:text-white uppercase rounded-sm text-[12px] font-[600] border-[1px] border-gray-200 transition-all duration-200 ease-in-out"
                                             >
                                                 Download
                                             </Link>

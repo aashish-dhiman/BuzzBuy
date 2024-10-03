@@ -92,7 +92,7 @@ const UpdateOrders = () => {
                                         <h4 className="font-medium">
                                             {buyer?.name}
                                         </h4>
-                                        <p className="text-sm">{`${shippingInfo?.address}, ${shippingInfo?.city}, ${shippingInfo?.state} - ${shippingInfo?.pincode}`}</p>
+                                        <p className="text-sm">{`${shippingInfo?.address}, ${shippingInfo?.landmark}, ${shippingInfo?.city}, ${shippingInfo?.state} - ${shippingInfo?.pincode}`}</p>
                                         <div className="flex gap-2 text-sm">
                                             <p className="font-medium">Email</p>
                                             <p>{buyer?.email}</p>
@@ -113,7 +113,7 @@ const UpdateOrders = () => {
                                             </h3>
                                             <Link
                                                 to="/admin/orders"
-                                                className="ml-1 flex items-center gap-0 font-medium text-primaryBlue uppercase"
+                                                className="ml-1 flex items-center gap-0 font-medium text-primary uppercase"
                                             >
                                                 <ArrowBackIosIcon
                                                     sx={{ fontSize: "14px" }}
@@ -142,7 +142,7 @@ const UpdateOrders = () => {
                                                     fullWidth
                                                     sx={{ marginTop: 1 }}
                                                 >
-                                                    <InputLabel id="order-status-select-label">
+                                                    <InputLabel id="order-status-select-label" >
                                                         Status
                                                     </InputLabel>
                                                     <Select
@@ -180,7 +180,7 @@ const UpdateOrders = () => {
                                                 </FormControl>
                                                 <button
                                                     type="submit"
-                                                    className="bg-orange px-4 py-2 text-[14px] text-white hover:font-medium rounded shadow hover:shadow-lg"
+                                                    className="bg-primary px-4 py-2 text-[14px] text-white hover:font-medium rounded shadow hover:shadow-lg"
                                                 >
                                                     Update
                                                 </button>

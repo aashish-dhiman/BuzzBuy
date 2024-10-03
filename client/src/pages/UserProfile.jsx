@@ -6,7 +6,7 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const UserProfile = () => {
-    const {auth, setAuth} = useAuth();
+    const { auth, setAuth } = useAuth();
     const [profile, setProfile] = useState(false);
     const [emailSection, setEmailSection] = useState(false);
     const [phoneSection, setPhoneSection] = useState(false);
@@ -128,7 +128,7 @@ const UserProfile = () => {
                             Personal Information
                         </div>
                         <button
-                            className="text-[14px] text-primaryBlue font-[500]"
+                            className="text-sm text-primary font-medium"
                             onClick={handleProfile}
                         >
                             {!profile ? "Edit" : "Cancel"}
@@ -145,7 +145,7 @@ const UserProfile = () => {
                                 <div
                                     className={`border-2 p-2 flex flex-col max-h-[50px] min-h-[50px] w-[220px] ${
                                         nameInputFocused
-                                            ? "border-primaryBlue border-1"
+                                            ? "border-primary border-1"
                                             : ""
                                     }`}
                                 >
@@ -173,7 +173,7 @@ const UserProfile = () => {
                                 </div>
                                 <button
                                     type="submit"
-                                    className="bg-primaryBlue text-white font-[600] w-[80px] h-[40px] px-4 py-2 rounded-sm"
+                                    className="bg-primary text-white font-[600] w-[80px] h-[40px] px-4 py-2 rounded-sm"
                                     onClick={handleNameSubmit}
                                 >
                                     Save
@@ -193,7 +193,7 @@ const UserProfile = () => {
                             Email Address
                         </div>
                         <button
-                            className="text-[14px] text-primaryBlue font-[500]"
+                            className="text-[14px] text-primary font-[500]"
                             onClick={handleEmail}
                         >
                             {!emailSection ? "Edit" : "Cancel"}
@@ -205,7 +205,7 @@ const UserProfile = () => {
                                 type="email"
                                 value={email}
                                 onChange={(e) => setEmail(e.target.value)}
-                                className="border-2 p-2 w-[220px] focus:outline-primaryBlue focus:outline-1"
+                                className="border-2 p-2 w-[220px] focus:outline-primary focus:outline-1"
                                 pattern="[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$" // Email pattern
                             />
                         ) : (
@@ -216,7 +216,7 @@ const UserProfile = () => {
 
                         {emailSection && (
                             <button
-                                className="bg-primaryBlue text-white font-[600] w-[80px] h-[40px] px-4 py-2 rounded-sm"
+                                className="bg-primary text-white font-[600] w-[80px] h-[40px] px-4 py-2 rounded-sm"
                                 onClick={handleEmailSubmit}
                             >
                                 Save
@@ -231,7 +231,7 @@ const UserProfile = () => {
                             Mobile Number
                         </div>
                         <button
-                            className="text-[14px] text-primaryBlue font-[500]"
+                            className="text-[14px] text-primary font-[500]"
                             onClick={handlePhone}
                         >
                             {!phoneSection ? "Edit" : "Cancel"}
@@ -243,7 +243,7 @@ const UserProfile = () => {
                                 type="tel"
                                 value={phone}
                                 onChange={(e) => setPhone(e.target.value)}
-                                className="border-2 p-2 w-[220px] focus:outline-primaryBlue focus:outline-1"
+                                className="border-2 p-2 w-[220px] focus:outline-primary focus:outline-1"
                                 inputMode="numeric" // Set input mode to numeric
                                 pattern="[0-9]*" // Allow only numeric values
                                 minLength="10"
@@ -257,7 +257,7 @@ const UserProfile = () => {
 
                         {phoneSection && (
                             <button
-                                className="bg-primaryBlue text-white font-[600] w-[80px] h-[40px] px-4 py-2 rounded-sm"
+                                className="bg-primary text-white font-[600] w-[80px] h-[40px] px-4 py-2 rounded-sm"
                                 onClick={handlePhoneSubmit}
                             >
                                 Save
@@ -265,54 +265,19 @@ const UserProfile = () => {
                         )}
                     </div>
                 </div>
-                {/* FAQ section */}
-                <div>
-                    <h3 className="text-[16px] font-[600] mt-4">FAQs</h3>
-                    <div className="mt-4">
-                        <h5 className="text-[14px] font-[500]">
-                            What happens when I update my email address (or
-                            mobile number)?
-                        </h5>
-                        <p className="text-[12px] text-slate-500 mt-2">
-                            Your login email id (or mobile number) changes,
-                            likewise. You&apos;ll receive all your account
-                            related communication on your updated email address
-                            (or mobile number).
-                        </p>
-                    </div>
-                    <div className="mt-4">
-                        <h5 className="text-[14px] font-[500]">
-                            When will my Flipkart account be updated with the
-                            new email address (or mobile number)?
-                        </h5>
-                        <p className="text-[12px] text-slate-500 mt-2">
-                            It happens as soon as you confirm the verification
-                            code sent to your email (or mobile) and save the
-                            changes.
-                        </p>
-                    </div>
-                    <div className="mt-4">
-                        <h5 className="text-[14px] font-[500]">
-                            Does my Seller account get affected when I update my
-                            email address?
-                        </h5>
-                        <p className="text-[12px] text-slate-500 mt-2">
-                            Flipkart has a single sign-on policy. Any changes
-                            will reflect in your Seller account also.
-                        </p>
-                    </div>
-                </div>
+
                 {/* deactivate account */}
-                <div className="text-[14px] text-primaryBlue font-[500] mt-4 -mb-4">
-                    <Link to="./deactivate">Deactivate Account</Link>
+                <div className="text-sm font-medium mt-4">
+                    <p className="text-gray-500">
+                        Not happy with the services?
+                    </p>
+                    <Link
+                        to="./deactivate"
+                        className="text-primary text-base hover:underline"
+                    >
+                        Deactivate Account
+                    </Link>
                 </div>
-            </div>
-            {/* image section */}
-            <div>
-                <img
-                    src="https://static-assets-web.flixcart.com/fk-p-linchpin-web/fk-cp-zion/img/myProfileFooter_4e9fe2.png"
-                    alt="image"
-                />
             </div>
         </div>
     );

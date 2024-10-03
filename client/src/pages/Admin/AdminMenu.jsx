@@ -4,9 +4,10 @@ import PersonIcon from "@mui/icons-material/Person";
 import BarChartIcon from "@mui/icons-material/BarChart";
 import PowerSettingsNewIcon from "@mui/icons-material/PowerSettingsNew";
 import { GiCrossMark } from "react-icons/gi";
+import user from "../../assets/images/user.png";
 
 const AdminMenu = ({ toggleMenu }) => {
-    const { auth, setAuth, LogOut } = useAuth();
+    const { auth, LogOut } = useAuth();
     const navigate = useNavigate();
     const handleLogout = () => {
         navigate("/");
@@ -21,16 +22,13 @@ const AdminMenu = ({ toggleMenu }) => {
     return (
         <div className="flex flex-col gap-4 w-full">
             <div className="flex relative items-start gap-4 p-3 bg-white rounded-sm shadow-md">
-                <img
-                    src="https://static-assets-web.flixcart.com/fk-p-linchpin-web/fk-cp-zion/img/profile-pic-male_4811a1.svg"
-                    alt="user svg"
-                />
+                <img src={user} alt="admin svg" className="w-14 h-14" />
 
                 <div className="flex flex-col justify-center p-1">
-                    <div className="text-[14px]">Hello,</div>
-                    <div className="font-[600] text-[16px] ">
+                    <span>Hello,</span>
+                    <span className="font-[600] text-[16px]">
                         {auth?.user?.name}
-                    </div>
+                    </span>
                 </div>
                 <div
                     className="hover:scale-[1.06] absolute right-4 top-2 cursor-pointer sm:hidden"
@@ -43,7 +41,7 @@ const AdminMenu = ({ toggleMenu }) => {
             <div className="bg-white flex flex-col justify-center rounded-sm sm:shadow-md overflow-y-auto">
                 <div className="flex flex-col justify-center border-b-[1px]">
                     <div className="flex flex-row items-center gap-6 pl-[10px] py-[8px]">
-                        <PersonIcon className="text-primaryBlue text-[16px]" />
+                        <PersonIcon className="text-primary text-[16px]" />
                         <div className="font-[600] text-[14px] text-slate-500">
                             ACCOUNT SETTINGS
                         </div>
@@ -54,11 +52,11 @@ const AdminMenu = ({ toggleMenu }) => {
                             onClick={scrollToTop}
                             className={({ isActive }) =>
                                 isActive
-                                    ? "font-[600] text-primaryBlue bg-[#f1f3f5]"
+                                    ? "font-[600] text-primary bg-[#f1f3f5]"
                                     : ""
                             }
                         >
-                            <div className=" h-[40px] px-[60px] flex items-center hover:text-primaryBlue hover:bg-[#f1f3f5]">
+                            <div className=" h-[40px] px-[60px] flex items-center hover:text-primary hover:bg-[#f1f3f5]">
                                 Profile Information
                             </div>
                         </NavLink>
@@ -68,11 +66,11 @@ const AdminMenu = ({ toggleMenu }) => {
                             onClick={scrollToTop}
                             className={({ isActive }) =>
                                 isActive
-                                    ? "font-[600] text-primaryBlue bg-[#f1f3f5]"
+                                    ? "font-[600] text-primary bg-[#f1f3f5]"
                                     : ""
                             }
                         >
-                            <div className=" h-[40px] px-[60px] flex items-center hover:text-primaryBlue hover:bg-[#f1f3f5]">
+                            <div className=" h-[40px] px-[60px] flex items-center hover:text-primary hover:bg-[#f1f3f5]">
                                 Manage Addresses
                             </div>
                         </NavLink>
@@ -82,11 +80,11 @@ const AdminMenu = ({ toggleMenu }) => {
                             onClick={scrollToTop}
                             className={({ isActive }) =>
                                 isActive
-                                    ? "font-[600] text-primaryBlue bg-[#f1f3f5]"
+                                    ? "font-[600] text-primary bg-[#f1f3f5]"
                                     : ""
                             }
                         >
-                            <div className=" h-[40px] px-[60px] flex items-center hover:text-primaryBlue hover:bg-[#f1f3f5]">
+                            <div className=" h-[40px] px-[60px] flex items-center hover:text-primary hover:bg-[#f1f3f5]">
                                 Pan Card
                             </div>
                         </NavLink>
@@ -95,7 +93,7 @@ const AdminMenu = ({ toggleMenu }) => {
 
                 <div className="flex flex-col justify-center border-b-[1px]">
                     <div className="flex flex-row items-center gap-6 pl-[10px] py-[8px]">
-                        <BarChartIcon className="text-primaryBlue text-[16px]" />
+                        <BarChartIcon className="text-primary text-[16px]" />
                         <div className="font-[600] text-[14px] text-slate-500">
                             DASHBOARD
                         </div>
@@ -106,11 +104,11 @@ const AdminMenu = ({ toggleMenu }) => {
                             onClick={scrollToTop}
                             className={({ isActive }) =>
                                 isActive
-                                    ? "font-[600] text-primaryBlue bg-[#f1f3f5]"
+                                    ? "font-[600] text-primary bg-[#f1f3f5]"
                                     : ""
                             }
                         >
-                            <div className=" h-[40px] px-[60px] flex items-center hover:text-primaryBlue hover:bg-[#f1f3f5]">
+                            <div className=" h-[40px] px-[60px] flex items-center hover:text-primary hover:bg-[#f1f3f5]">
                                 Orders
                             </div>
                         </NavLink>
@@ -120,11 +118,11 @@ const AdminMenu = ({ toggleMenu }) => {
                             onClick={scrollToTop}
                             className={({ isActive }) =>
                                 isActive
-                                    ? "font-[600] text-primaryBlue bg-[#f1f3f5]"
+                                    ? "font-[600] text-primary bg-[#f1f3f5]"
                                     : ""
                             }
                         >
-                            <div className=" h-[40px] px-[60px] flex items-center hover:text-primaryBlue hover:bg-[#f1f3f5]">
+                            <div className=" h-[40px] px-[60px] flex items-center hover:text-primary hover:bg-[#f1f3f5]">
                                 Products
                             </div>
                         </NavLink>
@@ -134,11 +132,11 @@ const AdminMenu = ({ toggleMenu }) => {
                             onClick={scrollToTop}
                             className={({ isActive }) =>
                                 isActive
-                                    ? "font-[600] text-primaryBlue bg-[#f1f3f5]"
+                                    ? "font-[600] text-primary bg-[#f1f3f5]"
                                     : ""
                             }
                         >
-                            <div className=" h-[40px] px-[60px] flex items-center hover:text-primaryBlue hover:bg-[#f1f3f5]">
+                            <div className=" h-[40px] px-[60px] flex items-center hover:text-primary hover:bg-[#f1f3f5]">
                                 Add Product
                             </div>
                         </NavLink>
@@ -148,11 +146,11 @@ const AdminMenu = ({ toggleMenu }) => {
                             onClick={scrollToTop}
                             className={({ isActive }) =>
                                 isActive
-                                    ? "font-[600] text-primaryBlue bg-[#f1f3f5]"
+                                    ? "font-[600] text-primary bg-[#f1f3f5]"
                                     : ""
                             }
                         >
-                            <div className=" h-[40px] px-[60px] flex items-center hover:text-primaryBlue hover:bg-[#f1f3f5]">
+                            <div className=" h-[40px] px-[60px] flex items-center hover:text-primary hover:bg-[#f1f3f5]">
                                 Users
                             </div>
                         </NavLink>
@@ -161,9 +159,9 @@ const AdminMenu = ({ toggleMenu }) => {
 
                 <div className="flex flex-col justify-center border-b-[1px]">
                     <div className="flex flex-row items-center gap-6 pl-[10px] py-[8px] group">
-                        <PowerSettingsNewIcon className="text-primaryBlue text-[16px]" />
+                        <PowerSettingsNewIcon className="text-primary text-[16px]" />
                         <button
-                            className="font-[600] text-[14px] w-full h-[40px] flex items-center text-slate-500 group-hover:text-primaryBlue"
+                            className="font-[600] text-[14px] w-full h-[40px] flex items-center text-slate-500 group-hover:text-primary"
                             onClick={handleLogout}
                         >
                             Logout

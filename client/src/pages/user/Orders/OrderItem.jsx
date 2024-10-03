@@ -73,7 +73,7 @@ const OrderItem = ({
                                 </>
                             ) : (
                                 <>
-                                    <span className="text-primaryBlue pb-0.5">
+                                    <span className="text-primary pb-0.5">
                                         <CircleIcon sx={{ fontSize: "14px" }} />
                                     </span>
                                     Ordered on {formatDate(createdAt)}

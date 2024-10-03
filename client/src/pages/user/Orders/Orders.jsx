@@ -6,6 +6,7 @@ import Spinner from "../../../components/Spinner";
 import axios from "axios";
 import { useAuth } from "../../../context/auth";
 import SeoData from "../../../SEO/SeoData";
+import orderNotFound from "../../../assets/images/order-not-found.png";
 
 const Orders = () => {
     const { auth } = useAuth();
@@ -50,7 +51,7 @@ const Orders = () => {
                         <Spinner />
                     ) : (
                         <div className="flex flex-col gap-3 w-full pb-5 overflow-hidden">
-                            {/* <!-- searchbar --> */}
+                            {/* <!-- search bar --> */}
                             <form
                                 // onSubmit={searchOrders}
                                 className="flex items-center justify-between mx-auto w-[100%] sm:w-10/12 bg-white border rounded mb-2 hover:shadow-md"
@@ -65,7 +66,7 @@ const Orders = () => {
                                 />
                                 <button
                                     type="submit"
-                                    className="h-full text-sm px-1 sm:px-4 py-2.5 text-white bg-primaryBlue hover:bg-blue-600 rounded-r flex items-center gap-1"
+                                    className="h-full text-sm px-1 sm:px-4 py-2.5 text-white bg-primary hover:bg-primary/90 rounded-r flex items-center gap-1"
                                 >
                                     <SearchIcon sx={{ fontSize: "20px" }} />
                                     <p className="text-[10px] sm:text-[14px]">
@@ -79,8 +80,9 @@ const Orders = () => {
                                 <div className="flex items-center flex-col gap-2 p-10 bg-white rounded-sm shadow-md">
                                     <img
                                         draggable="false"
-                                        src="https://rukminim1.flixcart.com/www/100/100/promos/23/08/2020/c5f14d2a-2431-4a36-b6cb-8b5b5e283d4f.png"
+                                        src={orderNotFound}
                                         alt="Empty Orders"
+                                        className="w-[200px] h-[200px]"
                                     />
                                     <span className="text-lg font-medium">
                                         Sorry, no orders found
@@ -88,7 +90,7 @@ const Orders = () => {
                                     <p>Place a new order from here</p>
                                     <Link
                                         to="/products"
-                                        className="bg-primaryBlue py-2 px-4 mt-1 text-white uppercase shadow hover:shadow-lg rounded-sm text-sm"
+                                        className="bg-primary py-2 px-4 mt-1 text-white uppercase shadow hover:shadow-lg rounded-sm text-sm"
                                     >
                                         Products
                                     </Link>

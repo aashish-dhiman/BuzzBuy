@@ -158,11 +158,15 @@ const ProductDescription = ({ product, productId }) => {
                         <p className="text-gray-500 font-medium">Highlights</p>
 
                         <ul className="list-disc flex flex-col gap-2 w-64">
-                            {product?.highlights?.map((highlight, i) => (
-                                <li key={i}>
-                                    <p>{highlight}</p>
-                                </li>
-                            ))}
+                            {product?.highlights.length == 0 ? (
+                                <div>NA</div>
+                            ) : (
+                                product?.highlights?.map((highlight, i) => (
+                                    <li key={i}>
+                                        <p>{highlight}</p>
+                                    </li>
+                                ))
+                            )}
                         </ul>
                     </div>
                     {/* <!-- highlights details --> */}
@@ -222,17 +226,6 @@ const ProductDescription = ({ product, productId }) => {
                 </div>
                 {/* <!-- seller details --> */}
 
-                {/* <!-- flipkart plus banner --> */}
-                {/* <div className="lg:w-1/2 mt-4 border">
-                                        <img
-                                            draggable="false"
-                                            className="w-full h-full object-fill"
-                                            src="https://rukminim1.flixcart.com/lockin/763/305/images/promotion_banner_v2_active.png"
-                                            alt="flipkart plus"
-                                        />
-                                    </div> */}
-                {/* <!-- flipkart plus banner --> */}
-
                 {/* <!-- description details --> */}
                 <div className="flex flex-col sm:flex-row gap-1 sm:gap-14 mt-4 items-stretch text-sm">
                     <p className="text-gray-500 font-medium">Description</p>
@@ -250,7 +243,7 @@ const ProductDescription = ({ product, productId }) => {
                     {/* <!-- specs list --> */}
                     {product?.specifications?.map((spec, i) => (
                         <div
-                            className="px-6 py-2 flex items-center text-sm"
+                            className="px-6 py-2 flex items-center gap-10 justify-between text-sm"
                             key={i}
                         >
                             <p className="text-gray-500 w-3/12">{spec.title}</p>

@@ -44,7 +44,7 @@ const Dashboard = () => {
                     >
                         <button
                             onClick={toggleMenu}
-                            className="sm:hidden text-blue-400 underline rounded px-2 text-lg py-2"
+                            className="sm:hidden text-primary underline rounded px-2 text-lg py-2"
                         >
                             {isMenuOpen ? "Close" : <GiHamburgerMenu />}
                         </button>

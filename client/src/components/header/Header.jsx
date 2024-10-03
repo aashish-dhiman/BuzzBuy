@@ -14,8 +14,8 @@ import { useCart } from "../../context/cart";
 const Header = () => {
     const [isDropdownOpen, setDropdownOpen] = useState(false);
 
-    const { auth, setAuth, LogOut } = useAuth();
-    const [cartItems, setCartItems] = useCart();
+    const { auth, LogOut } = useAuth();
+    const { cartItems } = useCart();
 
     const toggleDropdown = () => {
         setDropdownOpen(true);

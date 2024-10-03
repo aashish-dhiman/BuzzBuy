@@ -234,7 +234,7 @@ const Login = () => {
                                     to="/register"
                                     className=" text-primaryBlue font-[500] text-[12px] "
                                 >
-                                    New to Flipkart? Create an account
+                                    New to BuzzBuy? Create an account
                                 </Link>
                             </div>
                         </div>

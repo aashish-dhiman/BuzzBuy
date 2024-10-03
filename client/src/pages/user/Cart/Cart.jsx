@@ -16,7 +16,7 @@ const Cart = () => {
     const publishKey = import.meta.env.VITE_STRIPE_PUBLISH_KEY;
     const secretKey = import.meta.env.VITE_STRIPE_SECRET_KEY;
     let frontendURL = window.location.origin; // Get the frontend URL
-    const [cartItems, setCartItems, , , saveLaterItems] = useCart();
+    const { cartItems, saveLaterItems } = useCart();
 
     //PAYMENT USING STRIPE
     const handlePayment = async () => {

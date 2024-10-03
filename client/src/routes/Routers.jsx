@@ -13,7 +13,6 @@ import ProductPage from "../components/ProductListing/ProductPage.jsx";
 import Orders from "./../pages/user/Orders/Orders";
 import Wishlist from "../pages/user/Wishlist/Wishlist";
 import Cart from "../pages/user/Cart/Cart";
-import Shipping from "../pages/user/Cart/Shipping";
 import OrderSuccess from "../pages/user/Cart/OrderSuccess";
 import OrderFailed from "../pages/user/Cart/OrderFailed";
 import OrderDetails from "../pages/user/Orders/OrderDetails";
@@ -32,7 +31,6 @@ const Routers = () => {
             <Route path="/search" element={<Products />} />
             <Route path="/cart" element={<Cart />} />
             <Route path="/shipping" element={<PrivateRoute />}>
-                <Route path="" element={<Shipping />} />
                 <Route path="confirm" element={<OrderSuccess />} />
                 <Route path="failed" element={<OrderFailed />} />
             </Route>

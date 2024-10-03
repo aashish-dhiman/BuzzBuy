@@ -3,15 +3,14 @@ import { getDiscount } from "../../../utils/functions";
 import { useCart } from "../../../context/cart";
 
 const SaveForLaterItem = ({ product }) => {
-    const [, , , , saveLaterItems, addLater, moveToCart, removeLater] =
-        useCart();
+    const { moveToCart, removeLater } = useCart();
 
     const removeFromSaveForLaterHandler = (product) => {
         removeLater(product);
     };
 
-    const moveToCartHandler = (product,quantity) => {
-        moveToCart(product,quantity);
+    const moveToCartHandler = (product, quantity) => {
+        moveToCart(product, quantity);
     };
 
     return (
@@ -82,10 +81,7 @@ const SaveForLaterItem = ({ product }) => {
             <div className="flex justify-evenly sm:justify-start sm:gap-6">
                 {/* <!-- quantity --> */}
                 <div className="flex gap-2 items-center justify-between w-[130px]">
-                    <span
-                        
-                        className="w-7 h-7 text-3xl font-light bg-gray-50 rounded-full border flex items-center justify-center cursor-pointer hover:bg-gray-200"
-                    >
+                    <span className="w-7 h-7 text-3xl font-light bg-gray-50 rounded-full border flex items-center justify-center cursor-pointer hover:bg-gray-200">
                         <p>-</p>
                     </span>
                     <input
@@ -93,10 +89,7 @@ const SaveForLaterItem = ({ product }) => {
                         value={product?.quantity}
                         disabled
                     />
-                    <span
-                        
-                        className="w-7 h-7 text-xl font-light bg-gray-50 rounded-full border flex items-center justify-center cursor-pointer hover:bg-gray-200"
-                    >
+                    <span className="w-7 h-7 text-xl font-light bg-gray-50 rounded-full border flex items-center justify-center cursor-pointer hover:bg-gray-200">
                         +
                     </span>
                 </div>

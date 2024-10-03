@@ -7,7 +7,7 @@ import { useCart } from "../../../context/cart";
 import { useState } from "react";
 
 const CartItem = ({ product, inCart }) => {
-    const [, , addItems, removeItems, , addLater] = useCart();
+    const { addItems, removeItems, addLater } = useCart();
     // console.log(product);
     const [quantity, setQuantity] = useState(product?.quantity);
 

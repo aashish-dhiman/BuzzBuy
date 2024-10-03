@@ -28,7 +28,7 @@ import ProductDescription from "../Product Page/ProductDescription.jsx";
 
 const ProductDetails = () => {
     const { auth, isAdmin, isContextLoading } = useAuth();
-    const [cartItems, setCartItems, addItems] = useCart();
+    const { cartItems, addItems } = useCart();
 
     const [wishlistItems, setWishlistItems] = useState([]);
     const [loading, setLoading] = useState(true);

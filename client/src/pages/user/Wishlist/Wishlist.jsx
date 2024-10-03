@@ -5,13 +5,15 @@ import { useAuth } from "../../../context/auth";
 import Spinner from "../../../components/Spinner";
 import { toast } from "react-toastify";
 import SeoData from "../../../SEO/SeoData";
+import wishlist from "../../../assets/images/wishlist.png";
 
 const Wishlist = () => {
-    const { auth, setAuth, LogOut, isAdmin, isContextLoading } = useAuth();
+    const { auth, isAdmin } = useAuth();
     const [wishlistItems, setWishlistItems] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const [isLoadMore, setIsLoadMore] = useState(false);
     const [count, setCount] = useState(0);
+    console.log("count1: ", count);
     const [page, setPage] = useState(1);
     const pageSize = 5; // Number of items per page
 
@@ -33,7 +35,7 @@ const Wishlist = () => {
                 const newItems = res.data.wishlistItems;
                 // append new items in state
                 setWishlistItems((prev) => [...prev, ...newItems]);
-                setCount(res?.data?.totalItems);
+                setCount(res?.data?.totalItems || 0);
                 setIsLoading(false);
                 setIsLoadMore(false);
             } catch (error) {
@@ -70,7 +72,7 @@ const Wishlist = () => {
             setWishlistItems((prev) =>
                 prev.filter((item) => item._id !== productId)
             );
-            setCount((prev) => prev - 1);
+            setCount((prev) => (prev - 1 >= 0 ? prev - 1 : 0));
             setIsLoading(false);
         } catch (error) {
             console.error("Error updating wishlist:", error);
@@ -84,7 +86,7 @@ const Wishlist = () => {
             {isLoading && page === 1 ? (
                 <Spinner />
             ) : (
-                <div className="flex gap-3.5 w-full sm:w-11/12 sm:mt-4 m-auto pb-7">
+                <div className="flex gap-3.5 w-full sm:w-[90%] mx-auto py-5">
                     <div className="flex-1 shadow bg-white">
                         {/* Wishlist container */}
                         <div className="flex flex-col">
@@ -93,11 +95,11 @@ const Wishlist = () => {
                             </span>
 
                             {wishlistItems.length === 0 ? (
-                                <div className="flex items-center flex-col gap-2 m-6">
+                                <div className="flex items-center flex-col gap-2 m-6 text-center">
                                     <img
                                         draggable="false"
-                                        className="object-contain"
-                                        src="https://static-assets-web.flixcart.com/www/linchpin/fk-cp-zion/img/mywishlist-empty_39f7a5.png"
+                                        className="object-contain w-40 h-40 -ml-5"
+                                        src={wishlist}
                                         alt="Empty Wishlist"
                                     />
                                     <span className="text-lg font-medium mt-6">
@@ -122,7 +124,7 @@ const Wishlist = () => {
                                 <span className="font-medium text-md px-4 sm:px-8 py-4 flex items-center justify-center border-b">
                                     <button
                                         onClick={handleLoadMore}
-                                        className="text-primaryBlue"
+                                        className="text-primary font-semibold"
                                         disabled={isLoadMore}
                                     >
                                         {isLoadMore

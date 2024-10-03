@@ -65,7 +65,7 @@ const CartItem = ({ product, inCart }) => {
                     {/* <!-- product title --> */}
                     <div className="flex flex-col sm:flex-row justify-between items-start pr-5 gap-1 sm:gap-0">
                         <div className="flex flex-col gap-0.5 group sm:w-3/5">
-                            <p className="group-hover:text-primaryBlue">
+                            <p className="group-hover:text-primary">
                                 {product?.name?.length > 30
                                     ? `${product?.name?.substring(0, 30)}...`
                                     : product?.name}
@@ -79,7 +79,7 @@ const CartItem = ({ product, inCart }) => {
                             <p className="text-sm">
                                 Delivery by {getDeliveryDate()} |{" "}
                                 <span className="line-through">₹{40}</span>{" "}
-                                <span className="text-primaryGreen">Free</span>
+                                <span className="text-primary">Free</span>
                             </p>
                         </div>
                     </div>
@@ -100,7 +100,7 @@ const CartItem = ({ product, inCart }) => {
                             ).toLocaleString()}
                         </span>
 
-                        <span className="text-sm font-[600] text-primaryGreen">
+                        <span className="text-sm font-[600] text-primary">
                             {getDiscount(
                                 product?.price,
                                 product?.discountPrice
@@ -140,13 +140,13 @@ const CartItem = ({ product, inCart }) => {
                     <>
                         <button
                             onClick={() => saveForLaterHandler(product)}
-                            className="sm:ml-4 font-medium hover:text-primaryBlue"
+                            className="sm:ml-4 font-medium hover:text-primary"
                         >
                             SAVE FOR LATER
                         </button>
                         <button
                             onClick={() => removeCartItem(product)}
-                            className="font-medium hover:text-red-600"
+                            className="font-medium hover:text-gray-500"
                         >
                             REMOVE
                         </button>

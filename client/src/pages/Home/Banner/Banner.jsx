@@ -5,14 +5,12 @@ import "slick-carousel/slick/slick-theme.css";
 import "./Banner.css";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
-import oppo from "../../../assets/images/Banners/oppo-reno7.webp";
-import samsung from "../../../assets/images/Banners/samsung.jpeg";
-import infinix from "../../../assets/images/Banners/infinix.jpeg";
-import flight from "../../../assets/images/Banners/flight.jpeg";
-import flight2 from "../../../assets/images/Banners/flight2.jpeg";
-import laptop from "../../../assets/images/Banners/laptop.png";
-import mattress from "../../../assets/images/Banners/mattress.jpg";
-import iphone from "../../../assets/images/Banners/iphone.jpg";
+import banner1 from "../../../assets/images/Banners/banner1.png";
+import banner2 from "../../../assets/images/Banners/banner2.png";
+import banner3 from "../../../assets/images/Banners/banner3.png";
+import banner4 from "../../../assets/images/Banners/banner4.png";
+import banner5 from "../../../assets/images/Banners/banner5.png";
+import { Link } from "react-router-dom";
 
 export const PreviousBtn = ({ className, onClick }) => {
     return (
@@ -43,29 +41,21 @@ const Banner = () => {
         nextArrow: <NextBtn />,
     };
 
-    const banners = [
-        iphone,
-        laptop,
-        flight,
-        samsung,
-        infinix,
-        mattress,
-        oppo,
-        flight2,
-    ];
+    const banners = [banner1, banner2, banner3, banner4, banner5];
 
     return (
         <>
             <section className="w-full rounded-sm shadow p-0 overflow-hidden mt-3 sm:m-2">
                 <Slider {...settings}>
                     {banners.map((el, i) => (
-                        <img
-                            draggable="false"
-                            className="h-[150px] sm:h-[280px] w-full object-cover "
-                            src={el}
-                            alt="banner"
-                            key={i}
-                        />
+                        <Link key={i} to="./products">
+                            <img
+                                draggable="false"
+                                className="sm:h-[280px] w-full object-contain md:object-cover "
+                                src={el}
+                                alt="banner"
+                            />
+                        </Link>
                     ))}
                 </Slider>
             </section>

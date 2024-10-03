@@ -1,7 +1,7 @@
 import logoMain from "../../assets/images/logo-main.png";
 
 const Footer = () => (
-    <footer className="bg-slate-950 rounded-lg shadow m-2 sm:m-4">
+    <footer className="bg-black rounded-lg shadow m-2 sm:m-4">
         <div className="w-full max-w-screen-xl mx-auto p-4 md:py-8">
             <div className="flex flex-col sm:flex-row items-center sm:justify-between">
                 <a

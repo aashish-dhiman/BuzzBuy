@@ -1,4 +1,3 @@
-import { useAuth } from "../../context/auth";
 import ScrollToTopOnRouteChange from "../../utils/ScrollToTopOnRouteChange";
 import Categories from "../../components/header/Categories";
 import Banner from "./Banner/Banner";
@@ -26,7 +25,7 @@ const Home = () => {
                 <Banner />
                 <Categories />
 
-                <DealSlider title={"Discounts for You"} />
+                <DealSlider title={"Best Selling Products"} />
                 <ProductSlider
                     title={"Best of Electronics"}
                     products={electronicProducts}

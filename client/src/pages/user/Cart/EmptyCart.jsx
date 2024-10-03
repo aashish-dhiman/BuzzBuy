@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import emptyCart from "../../../assets/images/empty-cart.png"
 
 const EmptyCart = () => {
     return (
@@ -7,7 +8,7 @@ const EmptyCart = () => {
                 <img
                     draggable="false"
                     className="w-full h-full object-contain"
-                    src="https://rukminim1.flixcart.com/www/800/800/promos/16/05/2019/d438a32e-765a-4d8b-b4a6-520b560971e8.png"
+                    src={emptyCart}
                     alt="Empty Cart"
                 />
             </div>
@@ -15,7 +16,7 @@ const EmptyCart = () => {
             <p className="text-sm">Add items to it now.</p>
             <Link
                 to="/products"
-                className="bg-primaryBlue text-md text-white px-12 py-2 rounded-sm shadow mt-3"
+                className="bg-primary text-base text-white px-12 py-2 rounded-sm shadow mt-3"
             >
                 Shop Now
             </Link>

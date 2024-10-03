@@ -118,7 +118,7 @@ const Cart = () => {
                                     className={`${
                                         cartItems.length < 1
                                             ? "hidden"
-                                            : "bg-orange"
+                                            : "bg-primary"
                                     } w-full sm:w-1/3 mx-2 sm:mx-6 my-4 py-4 font-medium text-white shadow hover:shadow-lg rounded-sm `}
                                 >
                                     PLACE ORDER

@@ -105,13 +105,13 @@ const SaveForLaterItem = ({ product }) => {
                     onClick={() =>
                         moveToCartHandler(product, product?.quantity)
                     }
-                    className="sm:ml-4 font-medium hover:text-primaryBlue"
+                    className="sm:ml-4 font-medium hover:text-primary"
                 >
                     MOVE TO CART
                 </button>
                 <button
                     onClick={() => removeFromSaveForLaterHandler(product)}
-                    className="font-medium hover:text-red-600"
+                    className="font-medium hover:text-gray-500"
                 >
                     REMOVE
                 </button>

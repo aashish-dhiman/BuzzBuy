@@ -16,8 +16,7 @@ const SearchBar = () => {
                     import.meta.env.VITE_SERVER_URL
                 }/api/v1/product/search/${query}`
             );
-            setResults(products?.data?.slice(0, 6));    
-            setOpen(true);
+            setResults(products?.data?.slice(0, 6));
         } catch (error) {
             console.error("Error searching for products:", error);
         }
@@ -38,7 +37,10 @@ const SearchBar = () => {
     const handleInputChange = (e) => {
         const newQuery = e.target.value;
         setQuery(newQuery);
-        if (newQuery.trim() === "") return;
+        if (newQuery.trim() === "") {
+            setResults([]);
+            return;
+        }
 
         debouncedSearch(newQuery);
     };
@@ -53,6 +55,8 @@ const SearchBar = () => {
                 !inputRef.current.contains(e.target)
             ) {
                 setOpen(false);
+            } else {
+                setOpen(true);
             }
         }
         document.addEventListener("click", handleClick);
@@ -94,14 +98,14 @@ const SearchBar = () => {
                 {open && results.length > 0 && (
                     <div
                         ref={dialogRef}
-                        className="absolute top-[40px] left-0 right-0 pb-2 w-full bg-white shadow-xl rounded-b-md z-50"
+                        className="absolute top-[40px] left-0 right-0 pb-2 w-full bg-white shadow-xl rounded-b-md z-50 h-fit"
                     >
                         <ul>
-                            {results.map((product) => (
+                            {results?.map((product) => (
                                 <li key={product?._id}>
                                     <a
                                         href={`/product/${product._id}`}
-                                        className="px-5 py-4 h-[50px] hover:bg-secondaryHover flex gap-5"
+                                        className="px-5 py-3 h-fit hover:bg-secondaryHover flex gap-5 items-center"
                                     >
                                         <img
                                             src={product?.images[0].url}
@@ -109,10 +113,10 @@ const SearchBar = () => {
                                             className="w-5 h-5"
                                         />
                                         <span>
-                                            {product?.name?.length > 40
+                                            {product?.name?.length > 30
                                                 ? `${product?.name?.substring(
                                                       0,
-                                                      40
+                                                      30
                                                   )}...`
                                                 : product?.name}
                                         </span>

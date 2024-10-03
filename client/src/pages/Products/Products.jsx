@@ -9,14 +9,24 @@ import axios from "axios";
 import SeoData from "../../SEO/SeoData";
 import SideFilter from "../../components/ProductListing/SideFilter";
 import { useAuth } from "../../context/auth";
+import { makeStyles } from "@mui/styles";
+
+const useStyles = makeStyles(() => ({
+    ul: {
+        "& .MuiPaginationItem-root": {
+            color: "#DB4444",
+        },
+    },
+}));
 
 const Products = () => {
     const location = useLocation();
     const { auth, isAdmin } = useAuth();
+    const classes = useStyles();
+
     const [loading, setLoading] = useState(true);
 
     const [price, setPrice] = useState([0, 200000]);
-    // console.log(location.search);
     const [category, setCategory] = useState(
         location.search ? location.search.split("=")[1] : ""
     );
@@ -160,11 +170,13 @@ const Products = () => {
                         )}
 
                         {loading ? (
-                            <Spinner />
+                            <div className="flex items-center justify-center min-h-[60vh]">
+                                <Spinner />
+                            </div>
                         ) : (
                             products?.length !== 0 && (
                                 <div className="flex flex-col gap-2 pb-4 justify-center items-center w-full overflow-hidden bg-white">
-                                    <div className="grid grid-cols-1 gap-1 sm:grid-cols-4 w-full place-content-start overflow-hidden pb-4 min-h-[750px] ">
+                                    <div className="grid grid-cols-1 gap-1 sm:grid-cols-4 w-full place-content-start overflow-hidden pb-4 min-h-[750px] divide-y-2 sm:divide-y-0">
                                         {currentProducts?.map((product) => (
                                             <Product
                                                 key={product._id}
@@ -180,8 +192,9 @@ const Products = () => {
                                         <Pagination
                                             count={totalPages}
                                             page={currentPage}
+                                            classes={{ ul: classes.ul }}
                                             onChange={handlePageChange}
-                                            color="primary"
+                                            color="standard"
                                         />
                                     )}
                                 </div>

@@ -45,10 +45,12 @@ const ProductSlider = ({ title, products, logo }) => {
             <div className="flex flex-col md:flex-row w-full items-center">
                 {/* Left Side */}
                 <div className="flex flex-row md:flex-col h-full gap-6 w-[100%] md:w-[20%] items-center justify-around">
-                    <h1 className="text-[22px] pt-5 font-medium">{title}</h1>
+                    <h1 className="text-lg sm:text-2xl font-medium text-center pt-5">
+                        {title}
+                    </h1>
                     <Link
                         to="/products"
-                        className="bg-primaryBlue text-[12px] sm:text-[16px] font-medium text-white px-2 sm:px-5 py-1.5 sm:py-2.5 rounded-sm hover:shadow-md"
+                        className="bg-primary text-[12px] sm:text-[16px] font-medium text-white px-2 sm:px-5 py-1.5 sm:py-2.5 rounded-full hover:shadow-md"
                     >
                         VIEW ALL
                     </Link>

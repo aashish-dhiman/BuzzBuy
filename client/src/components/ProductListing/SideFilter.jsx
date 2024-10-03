@@ -59,7 +59,7 @@ const SideFilter = ({
                 <div className="flex items-center justify-between gap-5 px-4 py-2 border-b">
                     <p className="text-lg font-medium">Filters</p>
                     <span
-                        className="uppercase text-primaryBlue text-xs cursor-pointer font-medium"
+                        className="uppercase text-primary text-xs cursor-pointer font-medium"
                         onClick={() => clearFilters()}
                     >
                         clear all
@@ -78,6 +78,7 @@ const SideFilter = ({
                             getAriaLabel={() => "Price range slider"}
                             min={0}
                             max={200000}
+                            // color="#DB4444"
                         />
 
                         <div className="flex gap-3 items-center mb-2">

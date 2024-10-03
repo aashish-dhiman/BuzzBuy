@@ -63,7 +63,7 @@ const PriceCard = ({ cartItems }) => {
                     </p>
                     <div className="border border-dashed"></div>
 
-                    <p className="font-medium text-primaryGreen">
+                    <p className="font-medium text-primary">
                         You will save ₹
                         {cartItems
                             .reduce(

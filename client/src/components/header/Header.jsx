@@ -29,22 +29,20 @@ const Header = () => {
     };
 
     return (
-        <header className="container fixed top-0 left-0 z-[100000] bg-white w-full h-20 shadow-lg">
-            <nav className=" py-2 px-4 md:px-12 ">
-                <div className="flex items-center justify-between md:gap-16 w-full flex-col md:flex-row sm:flex-row lg:flex-row">
+        <header className="fixed top-0 left-0 right-0 z-[10000] bg-white w-full h-[70px] shadow-lg">
+            <nav className="p-1 sm:py-2 sm:px-4 md:px-12 h-full">
+                <div className="flex items-center justify-between gap-1.5 sm:gap-6 md:gap-8 lg:gap-16 w-full h-full">
                     {/* primary div */}
-                    <div className="flex items-center justify-between">
-                        <Link to="/">
-                            <img src={logo} alt="logo" className="w-14 h-14" />
-                        </Link>
-                    </div>
+                    <Link to="/">
+                        <img src={logo} alt="logo" className="w-14 h-14" />
+                    </Link>
 
                     {/* secondary div */}
-                    <div className="flex-1 flex items-center justify-between gap-14 w-[70%] mb-4 md:mb-0">
+                    <div className="flex-1 flex items-center gap-1 sm:gap-5 lg:gap-14 w-[70%]">
                         {/* search bar*/}
                         <SearchBar />
                         {/* home */}
-                        <div className="flex items-center group hover:bg-slate-100 px-3 py-2 rounded-full">
+                        <div className="hidden sm:flex items-center group hover:bg-slate-100 px-2 sm:px-3 py-2 rounded-full">
                             <NavLink to="/" className="flex items-center gap-1">
                                 <BiHomeSmile className="text-2xl" />
                                 <span className="text-lg hidden md:block lg:block ">
@@ -55,7 +53,7 @@ const Header = () => {
 
                         {/* Account */}
                         <div
-                            className={`flex items-center relative cursor-pointer group rounded-full px-3 py-2 ${
+                            className={`flex items-center relative cursor-pointer group rounded-full px-2 sm:px-3 py-2 ${
                                 auth.user
                                     ? "hover:bg-slate-100"
                                     : "hover:bg-primary"
@@ -65,7 +63,7 @@ const Header = () => {
                         >
                             {auth.user ? (
                                 <div className="flex items-center gap-1 ">
-                                    <AiOutlineUser className="text-2xl " />
+                                    <AiOutlineUser className="text-xl sm:text-2xl " />
                                     <span className="text-lg max-w-fit hidden md:block ">
                                         <p>{auth.user.name.split(" ")[0]}</p>
                                     </span>
@@ -79,7 +77,7 @@ const Header = () => {
                                         to="/login"
                                         className=" flex gap-1 group-hover:text-white"
                                     >
-                                        <AiOutlineUser className="text-[22px] group-hover:text-white" />
+                                        <AiOutlineUser className="text-xl sm:text-2xl group-hover:text-white" />
                                         <span className="text-[18px] max-w-fit hidden md:block lg:block whitespace-nowrap">
                                             <p>Sign in</p>
                                         </span>
@@ -95,7 +93,7 @@ const Header = () => {
 
                             {/* dropdown menu */}
                             {isDropdownOpen && (
-                                <div className="absolute top-[44px] -left-[2px] z-50 bg-white rounded-b-md p-2 w-[140px] shadow-2xl transition-all flex flex-col">
+                                <div className="absolute top-[38px] sm:top-[44px] -left-[80%] sm:-left-[2px] z-50 bg-white rounded-b-md p-2 w-[140px] shadow-2xl transition-all">
                                     <ul>
                                         {!auth.user && (
                                             <li className="p-1 hover:bg-slate-100 rounded-md">
@@ -176,7 +174,7 @@ const Header = () => {
 
                         {/* cart */}
                         {auth?.user?.role !== 1 && (
-                            <div className="flex items-center group rounded-full p-3 hover:bg-stone-100">
+                            <div className="flex items-center group rounded-full p-2 sm:p-3 hover:bg-stone-100">
                                 <NavLink
                                     to="/cart"
                                     className="relative flex items-center gap-1"
@@ -184,7 +182,7 @@ const Header = () => {
                                     <span className="absolute w-4 h-4 text-xs text-center font-semibold left-2 bottom-3 text-white bg-primary rounded-[50%] ">
                                         {cartItems?.length}
                                     </span>
-                                    <BsCart2 className="text-2xl" />
+                                    <BsCart2 className="text-xl sm:text-2xl" />
                                 </NavLink>
                             </div>
                         )}

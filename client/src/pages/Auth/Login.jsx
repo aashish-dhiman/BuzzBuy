@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import authImg from "../../assets/images/auth.png";
 import axios from "axios";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { AiFillEyeInvisible, AiFillEye } from "react-icons/ai";
@@ -9,6 +8,7 @@ import { useAuth } from "../../context/auth";
 import Spinner from "../../components/Spinner";
 import Cookies from "js-cookie";
 import SeoData from "../../SEO/SeoData";
+import login from "../../assets/images/login.png";
 
 const Login = () => {
     //hooks->
@@ -96,34 +96,42 @@ const Login = () => {
                 <Spinner />
             ) : (
                 <div className="container bg-primaryBg mt-5 sm:mt-0 md:mt-0 lg:mt-0 py-[2px]">
-                    <div className="flex items-center flex-col sm:flex-row md:flow-row lg:flex-row my-10 mx-auto w-full sm:w-[70vw] md:w-[70vw] lg:w-[70vw] min-h-[400px] md:h-[80vh] lg:h-[80vh] bg-white shadow-[0px_0px_8px_2px_rgba(212,212,212,0.6)] ">
+                    <div className="flex items-center flex-col sm:flex-row md:flow-row lg:flex-row my-5 mx-auto w-full sm:w-[75%] bg-white shadow-[0px_0px_8px_2px_rgba(212,212,212,0.6)] ">
                         {/* left view  */}
-                        <div className=" w-full md:w-[40%] lg:w-[40%] h-full bg-primaryBlue">
-                            <div className="flex gap-2 md:gap-6 flex-col h-full mt-5 md:mt-10 px-6 ">
-                                <div className="text-white leading-8 text-[22px] font-[600]">
+                        <div className=" w-full md:w-[40%] lg:w-[40%] h-full bg-black">
+                            <div className="flex gap-2 md:gap-4 flex-col h-full mt-5 md:mt-8 px-6 ">
+                                <div className="text-white text-2xl font-bold">
                                     <h2>Log in</h2>
                                 </div>
-                                <div className="text-slate-300 text-base leading-7 font-[400]">
+                                <div className="text-gray-300 text-base">
                                     <p>
                                         Get access to your Orders, Wishlist and
                                         Recommendations
                                     </p>
 
-                                    <p className="text-xs">
-                                        <span>
-                                            User <br />
-                                        </span>
-                                        username - test@test.com <br />
-                                        password - test123 <br />
-                                        <span>
-                                            Admin <br />
-                                        </span>
-                                        username - store@flipkart.com <br />
-                                        password - admin123
-                                    </p>
+                                    <div className="text-xs space-y-2 mt-2">
+                                        <p>
+                                            <span>
+                                                User <br />
+                                            </span>
+                                            username - test@test.com <br />
+                                            password - test123
+                                        </p>
+                                        <p>
+                                            <span>
+                                                Admin <br />
+                                            </span>
+                                            username - seller@buzzbuy.com <br />
+                                            password - admin123
+                                        </p>
+                                    </div>
                                 </div>
-                                <div className="">
-                                    <img src={authImg} alt="auth image" />
+                                <div className="w-full h-fit">
+                                    <img
+                                        src={login}
+                                        alt="auth image"
+                                        className="w-full h-full"
+                                    />
                                 </div>
                             </div>
                         </div>
@@ -148,7 +156,7 @@ const Login = () => {
                                                 onChange={(e) =>
                                                     setEmail(e.target.value)
                                                 }
-                                                className="peer placeholder-transparent h-8 w-full border-b-2 text-gray-900 text-sm focus:outline-none focus:border-blue-400"
+                                                className="peer placeholder-transparent h-8 w-full border-b-2 text-gray-900 text-sm focus:outline-none focus:border-primary"
                                                 placeholder="Email address"
                                                 required
                                                 pattern="[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$" // Email pattern
@@ -175,7 +183,7 @@ const Login = () => {
                                                 onChange={(e) =>
                                                     setPassword(e.target.value)
                                                 }
-                                                className="peer placeholder-transparent h-8 w-full border-b-2 focus:border-blue-400 text-gray-900 focus:outline-none text-sm"
+                                                className="peer placeholder-transparent h-8 w-full border-b-2 focus:border-primary text-gray-900 focus:outline-none text-sm"
                                                 placeholder="Password"
                                                 required
                                                 minLength="5"
@@ -199,13 +207,13 @@ const Login = () => {
                                         <div className="text-[9px] text-slate-500 ">
                                             <p>
                                                 By continuing, you agree to
-                                                Flipkart&apos;s Terms of Use and
+                                                BuzzBuy&apos;s Terms of Use and
                                                 Privacy Policy.
                                             </p>
                                         </div>
 
                                         <div className="relative flex flex-col">
-                                            <button className="bg-orange uppercase text-white text-[14px] font-[500] rounded-sm px-2 py-1">
+                                            <button className="bg-primary uppercase text-white text-[14px] font-[500] rounded-lg px-2 py-1">
                                                 Log in
                                             </button>
                                         </div>

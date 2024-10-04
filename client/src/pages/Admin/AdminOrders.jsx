@@ -40,7 +40,7 @@ const AdminOrders = () => {
 
   return (
     <>
-      <SeoData title="Admin Orders | Flipkart" />
+      <SeoData title="Admin Orders | BuzzBuy" />
 
       <main className="w-full px-4 py-4 sm:px-10">
         {/* <!-- row --> */}

@@ -1,6 +1,5 @@
 /* eslint-disable no-unused-vars */
 import { useEffect, useState } from "react";
-import { toast } from "react-toastify";
 import { useParams } from "react-router-dom";
 import ProductSlider from "../../pages/Home/ProductsListing/ProductSlider.jsx";
 import Spinner from "../../components/Spinner";

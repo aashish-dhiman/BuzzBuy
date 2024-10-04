@@ -262,7 +262,7 @@ const EditProduct = () => {
 
   return (
     <>
-      <SeoData title="New/Update Product | Flipkart" />
+      <SeoData title="New/Update Product | BuzzBuy" />
       <ScrollToTopOnRouteChange />
 
       {isSubmit || loading ? (

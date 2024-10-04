@@ -46,8 +46,8 @@ const Deactivate = () => {
             </div>
             <div className="p-4 text-[12px] text-slate-500">
               <ul className="list-disc leading-8">
-                <li>You are logged out of your Flipkart Account</li>
-                <li>Your public profile on Flipkart is no longer visible</li>
+                <li>You are logged out of your BuzzBuy Account</li>
+                <li>Your public profile on BuzzBuy is no longer visible</li>
                 <li>
                   Your reviews/ratings are still visible, while your profile
                   information is shown as ‘unavailable’ as a result of
@@ -60,7 +60,7 @@ const Deactivate = () => {
                 </li>
                 <li>
                   You will be unsubscribed from receiving promotional emails
-                  from Flipkart
+                  from BuzzBuy
                 </li>
               </ul>
             </div>

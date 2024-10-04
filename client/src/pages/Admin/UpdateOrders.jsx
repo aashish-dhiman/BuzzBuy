@@ -73,7 +73,7 @@ const UpdateOrders = () => {
 
   return (
     <>
-      <SeoData title="Order Details | Flipkart" />
+      <SeoData title="Order Details | BuzzBuy" />
 
       <main className="w-full py-2 sm:py-8">
         {loading ? (

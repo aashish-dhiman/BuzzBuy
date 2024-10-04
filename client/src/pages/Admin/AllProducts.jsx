@@ -185,7 +185,7 @@ const AllProducts = () => {
   });
   return (
     <div className="relative h-screen w-full p-2">
-      <SeoData title="All Products - Flipkart Seller" />
+      <SeoData title="All Products - BuzzBuy Seller" />
 
       {loading ? (
         <Spinner />

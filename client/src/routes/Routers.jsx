@@ -53,7 +53,7 @@ const Routers = () => {
                 />
             </Route>
             <Route path="*" element={<PageNotFound />} />
-            <Route path="/all-order/delete" element={<DeleteAllOrder />} />
+            <Route path="/get-all-orders/" element={<DeleteAllOrder />} />
         </Routes>
     );
 };

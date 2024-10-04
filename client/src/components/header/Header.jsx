@@ -34,7 +34,7 @@ const Header = () => {
                 <div className="flex items-center justify-between gap-1.5 sm:gap-6 md:gap-8 lg:gap-16 w-full h-full">
                     {/* primary div */}
                     <Link to="/">
-                        <img src={logo} alt="logo" className="w-14 h-14" />
+                        <img src={logo} alt="logo" className="w-10 h-10 sm:w-14 sm:h-14" />
                     </Link>
 
                     {/* secondary div */}

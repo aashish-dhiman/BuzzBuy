@@ -7,8 +7,9 @@ const SearchBar = () => {
     const [results, setResults] = useState([]);
     const [open, setOpen] = useState(false);
     const dialogRef = useRef(null);
-    const inputRef = useRef(null); // Add a ref for the input field
+    const inputRef = useRef(null);
 
+    // function to search the query
     const handleSearch = async (query) => {
         try {
             const products = await axios.get(
@@ -25,6 +26,7 @@ const SearchBar = () => {
     let timeout = useRef(null);
     const debounce = function (cb, delay) {
         return (...args) => {
+            console.log("cb: ", "fn called");
             if (timeout.current) clearTimeout(timeout.current);
             timeout.current = setTimeout(() => {
                 cb(...args);
@@ -37,11 +39,14 @@ const SearchBar = () => {
     const handleInputChange = (e) => {
         const newQuery = e.target.value;
         setQuery(newQuery);
+        // Clear results if the query is empty
         if (newQuery.trim() === "") {
             setResults([]);
             return;
         }
+        setOpen(true);
 
+        // Only perform a search if the query is non-empty
         debouncedSearch(newQuery);
     };
 
@@ -55,8 +60,7 @@ const SearchBar = () => {
                 !inputRef.current.contains(e.target)
             ) {
                 setOpen(false);
-            } else {
-                setOpen(true);
+                setResults([]);
             }
         }
         document.addEventListener("click", handleClick);
@@ -72,17 +76,17 @@ const SearchBar = () => {
                 <form
                     action="/search"
                     method=""
-                    className="bg-secondaryHover relative w-[100%] rounded-full px-1"
+                    className="bg-secondaryHover relative w-full rounded-full px-1"
                 >
                     <div className="flex items-center h-[40px] ">
-                        <div className=" flex items-center px-2 group">
+                        <div className=" flex items-center px-1 sm:px-2 group">
                             <button type="submit">
                                 <figure className=" text-slate-500 bg-transparent group-hover:text-black transition-all duration-200 ease-in-out">
                                     <BsSearch />
                                 </figure>
                             </button>
                         </div>
-                        <div className="w-[100%]">
+                        <div className="w-full">
                             <input
                                 ref={inputRef}
                                 type="text"
@@ -95,28 +99,28 @@ const SearchBar = () => {
                         </div>
                     </div>
                 </form>
-                {open && results.length > 0 && (
+                {open && (
                     <div
                         ref={dialogRef}
-                        className="absolute top-[40px] left-0 right-0 pb-2 w-full bg-white shadow-xl rounded-b-md z-50 h-fit"
+                        className="absolute top-[40px] left-0 right-0 w-full bg-white shadow-xl rounded-b-md z-50 h-fit overflow-hidden"
                     >
                         <ul>
                             {results?.map((product) => (
                                 <li key={product?._id}>
                                     <a
                                         href={`/product/${product._id}`}
-                                        className="px-5 py-3 h-fit hover:bg-secondaryHover flex gap-5 items-center"
+                                        className="px-3 py-2 sm:px-5 sm:py-3 h-fit hover:bg-secondaryHover flex gap-3 sm:gap-5 items-center"
                                     >
                                         <img
                                             src={product?.images[0].url}
                                             alt="product"
                                             className="w-5 h-5"
                                         />
-                                        <span>
-                                            {product?.name?.length > 30
+                                        <span className="text-sm sm:text-base">
+                                            {product?.name?.length > 40
                                                 ? `${product?.name?.substring(
                                                       0,
-                                                      30
+                                                      40
                                                   )}...`
                                                 : product?.name}
                                         </span>

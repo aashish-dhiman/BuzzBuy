@@ -3,7 +3,6 @@ import Pagination from "@mui/material/Pagination";
 import { useState, useEffect } from "react";
 import Product from "../../components/ProductListing/Product";
 import { useLocation } from "react-router-dom";
-import { toast } from "react-toastify";
 import Spinner from "./../../components/Spinner";
 import axios from "axios";
 import SeoData from "../../SEO/SeoData";
@@ -11,203 +10,187 @@ import SideFilter from "../../components/ProductListing/SideFilter";
 import { useAuth } from "../../context/auth";
 import { makeStyles } from "@mui/styles";
 import productNotFound from "../../assets/images/order-not-found.png";
+import { triggerCustomToast } from "../../components/Toast/CustomToast";
 
 const useStyles = makeStyles(() => ({
-    ul: {
-        "& .MuiPaginationItem-root": {
-            color: "#DB4444",
-        },
+  ul: {
+    "& .MuiPaginationItem-root": {
+      color: "#DB4444",
     },
+  },
 }));
 
 const Products = () => {
-    const location = useLocation();
-    const { auth, isAdmin } = useAuth();
-    const classes = useStyles();
+  const location = useLocation();
+  const { auth, isAdmin } = useAuth();
+  const classes = useStyles();
 
-    const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(true);
 
-    const [price, setPrice] = useState([0, 200000]);
-    const [category, setCategory] = useState(
-        location.search ? location.search.split("=")[1] : ""
-    );
-    const [ratings, setRatings] = useState(0);
-    const [products, setProducts] = useState([]);
-    const [wishlistItems, setWishlistItems] = useState([]);
+  const [price, setPrice] = useState([0, 200000]);
+  const [category, setCategory] = useState(
+    location.search ? location.search.split("=")[1] : "",
+  );
+  const [ratings, setRatings] = useState(0);
+  const [products, setProducts] = useState([]);
+  const [wishlistItems, setWishlistItems] = useState([]);
 
-    // pagination----->
-    const [currentPage, setCurrentPage] = useState(1);
-    const [productsCount, setProductsCount] = useState(products?.length);
-    const productsPerPage = 8;
-    // Calculate the total number of pages
-    const totalPages = Math.ceil(productsCount / productsPerPage);
-    // Calculate the range of products to display on the current page
-    const startIndex = (currentPage - 1) * productsPerPage;
-    const endIndex = startIndex + productsPerPage;
-    //updating the products to display on current page
-    const currentProducts = products.slice(startIndex, endIndex);
+  // pagination----->
+  const [currentPage, setCurrentPage] = useState(1);
+  const [productsCount, setProductsCount] = useState(products?.length);
+  const productsPerPage = 8;
+  // Calculate the total number of pages
+  const totalPages = Math.ceil(productsCount / productsPerPage);
+  // Calculate the range of products to display on the current page
+  const startIndex = (currentPage - 1) * productsPerPage;
+  const endIndex = startIndex + productsPerPage;
+  //updating the products to display on current page
+  const currentProducts = products.slice(startIndex, endIndex);
 
-    // Handle page change
-    const handlePageChange = (event, page) => {
-        setCurrentPage(page);
-    };
+  // Handle page change
+  const handlePageChange = (event, page) => {
+    setCurrentPage(page);
+  };
 
-    useEffect(() => {
-        toast(
-            "The backend is starting up, please wait for a minute if the loader is visible."
+  useEffect(() => {
+    triggerCustomToast();
+
+    //fetching filtered products from sever
+    const fetchFilteredData = async () => {
+      try {
+        setLoading(true);
+        const res = await axios.get(
+          `${import.meta.env.VITE_SERVER_URL}/api/v1/product/filtered-products`,
+          {
+            params: {
+              category: category,
+              priceRange: [
+                parseInt(price[0].toFixed()),
+                parseInt(price[1].toFixed()),
+              ],
+              ratings: ratings,
+            },
+          },
         );
+        // console.log(res.data);
 
-        //fetching filtered products from sever
-        const fetchFilteredData = async () => {
-            try {
-                setLoading(true);
-                const res = await axios.get(
-                    `${
-                        import.meta.env.VITE_SERVER_URL
-                    }/api/v1/product/filtered-products`,
-                    {
-                        params: {
-                            category: category,
-                            priceRange: [
-                                parseInt(price[0].toFixed()),
-                                parseInt(price[1].toFixed()),
-                            ],
-                            ratings: ratings,
-                        },
-                    }
-                );
-                // console.log(res.data);
+        res.status === 404 && triggerCustomToast("error", "No Products Found!");
 
-                res.status === 404 &&
-                    toast.error("No Products Found!", {
-                        toastId: "productNotFound",
-                    });
+        res.status === 201 && setProducts(res.data.products);
+        setLoading(false);
+        setProductsCount(res.data.products.length);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+        setLoading(false);
 
-                res.status === 201 && setProducts(res.data.products);
-                setLoading(false);
-                setProductsCount(res.data.products.length);
-            } catch (error) {
-                console.error("Error fetching data:", error);
-                setLoading(false);
+        //server error
+        error.response?.status === 500 &&
+          triggerCustomToast(
+            "error",
+            "Something went wrong! Please try after sometime.",
+          );
+      }
+    };
+    fetchFilteredData();
+  }, [price, category, ratings]);
 
-                //server error
-                error.response?.status === 500 &&
-                    toast.error(
-                        "Something went wrong! Please try after sometime.",
-                        {
-                            toastId: "error",
-                        }
-                    );
-            }
-        };
-        fetchFilteredData();
-    }, [price, category, ratings]);
+  useEffect(() => {
+    // getting user wishlist items from server
+    const fetchWishlistItems = async () => {
+      try {
+        const res = await axios.get(
+          `${import.meta.env.VITE_SERVER_URL}/api/v1/user/wishlist`,
+          {
+            headers: {
+              Authorization: auth?.token,
+            },
+          },
+        );
+        setWishlistItems(res.data.wishlistItems);
+      } catch (error) {
+        console.error("Error fetching data from wishlist product page:", error);
+        //server error
+        error.response?.status === 500 &&
+          triggerCustomToast("error", "Error in Fetching Wishlist Items!");
+      }
+    };
+    auth?.token && !isAdmin && fetchWishlistItems();
+  }, [auth?.token, isAdmin]);
 
-    useEffect(() => {
-        // getting user wishlist items from server
-        const fetchWishlistItems = async () => {
-            try {
-                const res = await axios.get(
-                    `${import.meta.env.VITE_SERVER_URL}/api/v1/user/wishlist`,
-                    {
-                        headers: {
-                            Authorization: auth?.token,
-                        },
-                    }
-                );
-                setWishlistItems(res.data.wishlistItems);
-            } catch (error) {
-                console.error(
-                    "Error fetching data from wishlist product page:",
-                    error
-                );
-                //server error
-                error.response?.status === 500 &&
-                    toast.error("Error in Fetching Wishlist Items!", {
-                        toastId: "error",
-                    });
-            }
-        };
-        auth?.token && !isAdmin && fetchWishlistItems();
-    }, [auth?.token, isAdmin]);
+  return (
+    <>
+      <SeoData title="All Products | BuzzBuy" />
 
-    return (
-        <>
-            <SeoData title="All Products | BuzzBuy" />
+      <main className="w-full py-2">
+        {/* <!-- row --> */}
+        <div className="mx-auto mt-2 flex gap-3 sm:mx-3">
+          {/* <!-- sidebar column  --> */}
+          <SideFilter
+            price={price}
+            category={category}
+            ratings={ratings}
+            setPrice={setPrice}
+            setCategory={setCategory}
+            setRatings={setRatings}
+          />
+          {/* <!-- sidebar column  --> */}
 
-            <main className="w-full py-2">
-                {/* <!-- row --> */}
-                <div className="flex gap-3 mt-2 sm:mx-3 mx-auto ">
-                    {/* <!-- sidebar column  --> */}
-                    <SideFilter
-                        price={price}
-                        category={category}
-                        ratings={ratings}
-                        setPrice={setPrice}
-                        setCategory={setCategory}
-                        setRatings={setRatings}
+          {/* <!-- search column --> */}
+          <div className="relative flex-1">
+            {/* No products found */}
+            {!loading && products?.length === 0 && (
+              <div className="flex flex-col items-center justify-start gap-5 rounded-sm bg-white p-6 shadow-sm sm:min-h-[750px] sm:p-16">
+                <img
+                  draggable="true"
+                  className="h-[250px] w-[250px] object-contain"
+                  src={productNotFound}
+                  alt="Search Not Found"
+                />
+                <h1 className="text-2xl font-medium text-gray-900">
+                  Sorry, no results found!
+                </h1>
+                <p className="-mt-2 text-center text-base text-slate-500 sm:text-xl">
+                  Please check the spelling or try searching for something else.
+                </p>
+              </div>
+            )}
+
+            {loading ? (
+              <div className="flex min-h-[60vh] items-center justify-center">
+                <Spinner />
+              </div>
+            ) : (
+              products?.length !== 0 && (
+                <div className="flex w-full flex-col items-center justify-center gap-2 overflow-hidden bg-white pb-4">
+                  <div className="grid min-h-[750px] w-full grid-cols-1 place-content-start gap-1 divide-y-2 overflow-hidden pb-4 sm:grid-cols-4 sm:divide-y-0">
+                    {currentProducts?.map((product) => (
+                      <Product
+                        key={product._id}
+                        {...product}
+                        wishlistItems={wishlistItems}
+                        setWishlistItems={setWishlistItems}
+                      />
+                    ))}
+                  </div>
+                  {productsCount > productsPerPage && (
+                    <Pagination
+                      count={totalPages}
+                      page={currentPage}
+                      classes={{ ul: classes.ul }}
+                      onChange={handlePageChange}
+                      color="standard"
                     />
-                    {/* <!-- sidebar column  --> */}
-
-                    {/* <!-- search column --> */}
-                    <div className="flex-1 relative ">
-                        {/* No products found */}
-                        {!loading && products?.length === 0 && (
-                            <div className="flex flex-col items-center justify-start gap-5 bg-white shadow-sm rounded-sm p-6 sm:p-16 sm:min-h-[750px] ">
-                                <img
-                                    draggable="true"
-                                    className="w-[250px] h-[250px] object-contain"
-                                    src={productNotFound}
-                                    alt="Search Not Found"
-                                />
-                                <h1 className="text-2xl font-medium text-gray-900">
-                                    Sorry, no results found!
-                                </h1>
-                                <p className="text-base sm:text-xl text-center text-slate-500 -mt-2">
-                                    Please check the spelling or try searching
-                                    for something else.
-                                </p>
-                            </div>
-                        )}
-
-                        {loading ? (
-                            <div className="flex items-center justify-center min-h-[60vh]">
-                                <Spinner />
-                            </div>
-                        ) : (
-                            products?.length !== 0 && (
-                                <div className="flex flex-col gap-2 pb-4 justify-center items-center w-full overflow-hidden bg-white">
-                                    <div className="grid grid-cols-1 gap-1 sm:grid-cols-4 w-full place-content-start overflow-hidden pb-4 min-h-[750px] divide-y-2 sm:divide-y-0">
-                                        {currentProducts?.map((product) => (
-                                            <Product
-                                                key={product._id}
-                                                {...product}
-                                                wishlistItems={wishlistItems}
-                                                setWishlistItems={
-                                                    setWishlistItems
-                                                }
-                                            />
-                                        ))}
-                                    </div>
-                                    {productsCount > productsPerPage && (
-                                        <Pagination
-                                            count={totalPages}
-                                            page={currentPage}
-                                            classes={{ ul: classes.ul }}
-                                            onChange={handlePageChange}
-                                            color="standard"
-                                        />
-                                    )}
-                                </div>
-                            )
-                        )}
-                    </div>
-                    {/* <!-- search column --> */}
+                  )}
                 </div>
-                {/* <!-- row --> */}
-            </main>
-        </>
-    );
+              )
+            )}
+          </div>
+          {/* <!-- search column --> */}
+        </div>
+        {/* <!-- row --> */}
+      </main>
+    </>
+  );
 };
 
 export default Products;

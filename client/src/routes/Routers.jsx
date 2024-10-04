@@ -21,41 +21,35 @@ import UpdateOrders from "../pages/Admin/UpdateOrders";
 import DeleteAllOrder from "../pages/DeleteAllOrder.jsx";
 
 const Routers = () => {
-    return (
-        <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/register" element={<Register />} />
-            <Route path="/forgot-password" element={<ForgotPassword />} />
-            <Route path="/products" element={<Products />} />
-            <Route path="/search" element={<Products />} />
-            <Route path="/cart" element={<Cart />} />
-            <Route path="/shipping" element={<PrivateRoute />}>
-                <Route path="confirm" element={<OrderSuccess />} />
-                <Route path="failed" element={<OrderFailed />} />
-            </Route>
-            <Route path="product/:productId" element={<ProductPage />} />
-            <Route path="/user" element={<PrivateRoute />}>
-                <Route path="dashboard/*" element={<Dashboard />} />
-                <Route path="orders" element={<Orders />} />
-                <Route
-                    path="orders/order_details/:id"
-                    element={<OrderDetails />}
-                />
-                <Route path="wishlist" element={<Wishlist />} />
-            </Route>
-            <Route path="/admin" element={<AdminRoute />}>
-                <Route path="dashboard/*" element={<AdminDashboard />} />
-                <Route path="orders" element={<AdminOrders />} />
-                <Route
-                    path="orders/order_details/:id"
-                    element={<UpdateOrders />}
-                />
-            </Route>
-            <Route path="*" element={<PageNotFound />} />
-            <Route path="/get-all-orders/" element={<DeleteAllOrder />} />
-        </Routes>
-    );
+  return (
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="/login" element={<Login />} />
+      <Route path="/register" element={<Register />} />
+      <Route path="/forgot-password" element={<ForgotPassword />} />
+      <Route path="/products" element={<Products />} />
+      <Route path="/search" element={<Products />} />
+      <Route path="/cart" element={<Cart />} />
+      <Route path="/shipping" element={<PrivateRoute />}>
+        <Route path="confirm" element={<OrderSuccess />} />
+        <Route path="failed" element={<OrderFailed />} />
+      </Route>
+      <Route path="product/:productId" element={<ProductPage />} />
+      <Route path="/user" element={<PrivateRoute />}>
+        <Route path="dashboard/*" element={<Dashboard />} />
+        <Route path="orders" element={<Orders />} />
+        <Route path="orders/order_details/:id" element={<OrderDetails />} />
+        <Route path="wishlist" element={<Wishlist />} />
+      </Route>
+      <Route path="/admin" element={<AdminRoute />}>
+        <Route path="dashboard/*" element={<AdminDashboard />} />
+        <Route path="orders" element={<AdminOrders />} />
+        <Route path="orders/order_details/:id" element={<UpdateOrders />} />
+      </Route>
+      <Route path="*" element={<PageNotFound />} />
+      <Route path="/get-all-orders/" element={<DeleteAllOrder />} />
+    </Routes>
+  );
 };
 
 export default Routers;

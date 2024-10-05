@@ -53,6 +53,8 @@ const Product = ({
           "error",
           "Admins are not allowed to add items to the wishlist",
         );
+      } else if (error.message.includes("401")) {
+        triggerCustomToast("error", "Please Login First");
       } else {
         triggerCustomToast(
           "error",

@@ -13,12 +13,12 @@ import SeoData from "../../SEO/SeoData";
 import ProductImage from "../Product Page/ProductImage.jsx";
 import ProductDescription from "../Product Page/ProductDescription.jsx";
 import { triggerCustomToast } from "../Toast/CustomToast.js";
+import { useWishlist } from "../../context/wishlist.jsx";
 
 const ProductDetails = () => {
-  const { auth, isAdmin, isContextLoading } = useAuth();
+  const { auth } = useAuth();
   const { cartItems, addItems } = useCart();
-
-  const [wishlistItems, setWishlistItems] = useState([]);
+  const { wishlistItems, setWishlistItems } = useWishlist();
   const [loading, setLoading] = useState(true);
   const [product, setProduct] = useState({});
 
@@ -37,28 +37,6 @@ const ProductDetails = () => {
     };
     addItems(item, 1);
   };
-
-  //fetch cart items
-  useEffect(() => {
-    //fetch wishlist items
-    const fetchWishlistItems = async () => {
-      try {
-        // only id of wishlist products will get
-        const res = await axios.get(
-          `${import.meta.env.VITE_SERVER_URL}/api/v1/user/wishlist`,
-          {
-            headers: {
-              Authorization: auth.token,
-            },
-          },
-        );
-        setWishlistItems(res.data.wishlistItems);
-      } catch (error) {
-        console.error("Error fetching wishlist items:", error);
-      }
-    };
-    auth.token && !isAdmin && fetchWishlistItems();
-  }, [isContextLoading, auth.token, auth, isAdmin]);
 
   //fetch product details
   useEffect(() => {
@@ -127,7 +105,12 @@ const ProductDetails = () => {
       console.log(error);
       // Revert UI update if there is an error
       updateWishlistUI(type !== "add");
-      triggerCustomToast("error", "Something went wrong!");
+
+      if (error.message.includes("401")) {
+        triggerCustomToast("error", "Please Login First");
+      } else {
+        triggerCustomToast("error", "Something went wrong!");
+      }
     }
   };
 

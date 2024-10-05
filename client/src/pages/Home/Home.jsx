@@ -15,50 +15,68 @@ import applianceCard from "../../assets/images/appliance-card.jpg";
 import furnitureCard from "../../assets/images/furniture-card.jpg";
 import Suggestion from "./Suggestions/Suggestion";
 import SeoData from "../../SEO/SeoData";
+import { useState } from "react";
+import { IoClose } from "react-icons/io5";
 
 const Home = () => {
-    return (
-        <>
-            <SeoData title="Online Shopping Site for Mobiles, Electronics, Furniture, Grocery, Lifestyle, Books & More. Best Offers!" />
-            <ScrollToTopOnRouteChange />
-            <main className="flex flex-col items-center gap-3 px-2 py-3">
-                <Banner />
-                <Categories />
+  const [isInfoMessageVisible, setisInfoMessageVisible] = useState(true);
+  return (
+    <>
+      <SeoData title="Online Shopping Site for Mobiles, Electronics, Furniture, Grocery, Lifestyle, Books & More. Best Offers!" />
+      <ScrollToTopOnRouteChange />
+      <main className="flex flex-col items-center gap-3 px-2 py-3">
+        {isInfoMessageVisible && (
+          <div className="flex w-full items-start justify-between gap-5 rounded-md bg-primary p-2 text-[8px] text-white md:text-sm">
+            <p>
+              Backend Initialization: Please wait a moment while the server
+              starts up. If the loading indicator persists, it may take a minute
+              to start.
+            </p>
+            <span
+              className="cursor-pointer hover:scale-[1.05]"
+              onClick={() => setisInfoMessageVisible(false)}
+            >
+              <IoClose className="h-5 w-5" />
+            </span>
+          </div>
+        )}
+        <Banner />
+        <Categories />
 
-                <DealSlider title={"Best Selling Products"} />
-                <ProductSlider
-                    title={"Best of Electronics"}
-                    products={electronicProducts}
-                    logo={electronics}
-                />
-                <ProductSlider
-                    title={"Beauty, Toys & More"}
-                    products={accessories}
-                    logo={accessoryCard}
-                />
-                <Suggestion
-                    title={"Suggested for You"}
-                    tagline={"Based on Your Activity"}
-                />
+        <DealSlider title={"Best Selling Products"} />
+        <ProductSlider
+          title={"Best of Electronics"}
+          products={electronicProducts}
+          logo={electronics}
+        />
+        <ProductSlider
+          title={"Beauty, Toys & More"}
+          products={accessories}
+          logo={accessoryCard}
+        />
+        <Suggestion
+          title={"Suggested for You"}
+          tagline={"Based on Your Activity"}
+        />
 
-                <ProductSlider
-                    title={"Fashion Top Deals"}
-                    products={fashionProducts}
-                    logo={fashionCard}
-                />
-                <ProductSlider
-                    title={"TVs & Appliances"}
-                    products={applianceProducts}
-                    logo={applianceCard}
-                />
-                <ProductSlider
-                    title={"Furniture & More"}
-                    products={furnitureProducts}
-                    logo={furnitureCard}
-                />
-            </main>
-        </>
-    );
+        <ProductSlider
+          title={"Fashion Top Deals"}
+          products={fashionProducts}
+          logo={fashionCard}
+        />
+        <ProductSlider
+          title={"TVs & Appliances"}
+          products={applianceProducts}
+          logo={applianceCard}
+        />
+        <ProductSlider
+          title={"Furniture & More"}
+          products={furnitureProducts}
+          logo={furnitureCard}
+        />
+      </main>
+    </>
+  );
 };
 
 export default Home;

@@ -7,10 +7,10 @@ import Spinner from "./../../components/Spinner";
 import axios from "axios";
 import SeoData from "../../SEO/SeoData";
 import SideFilter from "../../components/ProductListing/SideFilter";
-import { useAuth } from "../../context/auth";
 import { makeStyles } from "@mui/styles";
 import productNotFound from "../../assets/images/order-not-found.png";
 import { triggerCustomToast } from "../../components/Toast/CustomToast";
+import { useWishlist } from "../../context/wishlist";
 
 const useStyles = makeStyles(() => ({
   ul: {
@@ -22,7 +22,8 @@ const useStyles = makeStyles(() => ({
 
 const Products = () => {
   const location = useLocation();
-  const { auth, isAdmin } = useAuth();
+  // const { auth, isAdmin } = useAuth();
+  const { wishlistItems, setWishlistItems } = useWishlist();
   const classes = useStyles();
 
   const [loading, setLoading] = useState(true);
@@ -33,7 +34,6 @@ const Products = () => {
   );
   const [ratings, setRatings] = useState(0);
   const [products, setProducts] = useState([]);
-  const [wishlistItems, setWishlistItems] = useState([]);
 
   // pagination----->
   const [currentPage, setCurrentPage] = useState(1);
@@ -53,8 +53,6 @@ const Products = () => {
   };
 
   useEffect(() => {
-    triggerCustomToast();
-
     //fetching filtered products from sever
     const fetchFilteredData = async () => {
       try {
@@ -93,29 +91,6 @@ const Products = () => {
     };
     fetchFilteredData();
   }, [price, category, ratings]);
-
-  useEffect(() => {
-    // getting user wishlist items from server
-    const fetchWishlistItems = async () => {
-      try {
-        const res = await axios.get(
-          `${import.meta.env.VITE_SERVER_URL}/api/v1/user/wishlist`,
-          {
-            headers: {
-              Authorization: auth?.token,
-            },
-          },
-        );
-        setWishlistItems(res.data.wishlistItems);
-      } catch (error) {
-        console.error("Error fetching data from wishlist product page:", error);
-        //server error
-        error.response?.status === 500 &&
-          triggerCustomToast("error", "Error in Fetching Wishlist Items!");
-      }
-    };
-    auth?.token && !isAdmin && fetchWishlistItems();
-  }, [auth?.token, isAdmin]);
 
   return (
     <>

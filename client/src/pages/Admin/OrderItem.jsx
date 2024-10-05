@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 import CircleIcon from "@mui/icons-material/Circle";
 import { Link } from "react-router-dom";
@@ -16,10 +17,10 @@ const OrderItem = ({
   return (
     <Link
       to={`./order_details/${orderId}`}
-      className="mx-2 flex flex-col items-start gap-5 rounded border bg-white px-4 py-5 hover:shadow-lg sm:mx-10 sm:flex-row sm:px-8"
+      className="flex flex-col items-center gap-5 rounded border bg-white px-4 py-5 hover:shadow-lg md:flex-row md:px-8"
     >
       {/* <!-- image container --> */}
-      <div className="h-20 w-full sm:w-32">
+      <div className="h-20 w-20 md:h-24 md:w-24 lg:h-32 lg:w-32">
         <img
           draggable="false"
           className="h-full w-full object-contain"
@@ -30,7 +31,7 @@ const OrderItem = ({
       {/* <!-- image container --> */}
 
       {/* <!-- order desc container --> */}
-      <div className="flex w-full flex-col justify-between sm:flex-row">
+      <div className="flex w-full flex-col justify-between md:flex-row">
         <div className="flex w-[300px] flex-col gap-1 overflow-hidden">
           <p className="text-sm">
             {item?.name.length > 40
@@ -42,13 +43,13 @@ const OrderItem = ({
           </p>
         </div>
 
-        <div className="mt-1 flex flex-col gap-2 sm:mt-0 sm:w-1/2 sm:flex-row sm:gap-20">
+        <div className="mt-1 flex flex-col gap-2 sm:mt-0 sm:w-1/2 md:flex-row md:gap-20">
           <p className="w-[100px] text-sm">
             ₹{item?.discountPrice.toLocaleString()}
           </p>
 
           <div className="flex flex-col gap-2">
-            <p className="flex w-[250px] items-center gap-1 text-sm font-medium">
+            <p className="flex items-center gap-1 text-xs font-medium md:text-sm">
               {orderStatus === "Shipped" ? (
                 <>
                   <span className="pb-0.5 text-orange">

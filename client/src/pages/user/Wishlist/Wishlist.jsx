@@ -13,7 +13,6 @@ const Wishlist = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [isLoadMore, setIsLoadMore] = useState(false);
   const [count, setCount] = useState(0);
-  console.log("count1: ", count);
   const [page, setPage] = useState(1);
   const pageSize = 5; // Number of items per page
 
@@ -83,7 +82,7 @@ const Wishlist = () => {
       {isLoading && page === 1 ? (
         <Spinner />
       ) : (
-        <div className="mx-auto flex w-full gap-3.5 py-5 sm:w-[90%]">
+        <div className="mx-auto flex w-full gap-3.5 p-2 sm:p-6 md:p-10">
           <div className="flex-1 bg-white shadow">
             {/* Wishlist container */}
             <div className="flex flex-col">

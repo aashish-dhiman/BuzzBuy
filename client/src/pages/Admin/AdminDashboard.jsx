@@ -14,7 +14,7 @@ import { GiHamburgerMenu } from "react-icons/gi";
 
 const AdminDashboard = () => {
   const navigate = useNavigate();
-  const [isMenuOpen, setIsMenuOpen] = useState(false); // State to manage menu visibility
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   useEffect(() => {
     if (window.location.pathname === "/admin/dashboard") {
@@ -30,30 +30,28 @@ const AdminDashboard = () => {
     <>
       <SeoData title="Admin Dashboard" />
       <div className="h-full py-[5px]">
-        <div className="flex h-full items-start justify-between gap-5 px-2 py-2 text-[14px] sm:px-[50px] sm:py-[40px]">
+        <div className="flex h-full items-start justify-between gap-3 p-2 md:gap-5 md:p-4 lg:p-5">
           <div
-            className={`sm:w-[30%] ${
+            className={`md:w-[25%] ${
               isMenuOpen ? "relative z-50 h-full w-full bg-white" : "hidden"
-            } sm:inline-block`}
+            } md:inline-block`}
           >
             <AdminMenu toggleMenu={toggleMenu} />
           </div>
           <div
-            className={`h-full w-full rounded-sm bg-white shadow-md sm:w-[70%] ${
+            className={`h-full w-full rounded-sm bg-white shadow-md md:w-[75%] ${
               isMenuOpen ? "hidden" : "block"
             }`}
           >
             <button
               onClick={toggleMenu}
-              className="rounded px-2 py-2 text-lg text-blue-400 underline sm:hidden"
+              className="m-1 rounded-full p-1.5 hover:bg-primaryHover/30 md:hidden"
             >
-              {isMenuOpen ? "Close" : <GiHamburgerMenu />}
+              <GiHamburgerMenu className="h-6 w-6 text-primary" />
             </button>
             <Routes>
               <Route path="" element={<UserProfile />} />
               <Route path="profile" element={<UserProfile />} />
-              <Route path="address" element={<AddressComponent />} />
-              <Route path="pan" element={<PanCardComponent />} />
               <Route path="add-product" element={<CreateProduct />} />
               <Route path="all-products" element={<AllProducts />} />
               <Route path="users" element={<Users />} />

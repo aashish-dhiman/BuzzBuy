@@ -266,7 +266,7 @@ const CreateProduct = () => {
                 value={category}
                 onChange={(e) => setCategory(e.target.value)}
               >
-                {categories.map((el, i) => (
+                {categories?.map((el, i) => (
                   <MenuItem value={el} key={i}>
                     {el}
                   </MenuItem>
@@ -461,7 +461,7 @@ const CreateProduct = () => {
               <input
                 form="mainForm"
                 type="submit"
-                className="w-full cursor-pointer rounded bg-orange p-3 font-medium uppercase text-white shadow hover:shadow-lg"
+                className="w-full cursor-pointer rounded bg-primary p-3 font-medium uppercase text-white shadow hover:shadow-lg"
                 value="Submit"
               />
             </div>

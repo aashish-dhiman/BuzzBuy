@@ -24,7 +24,6 @@ const AllProducts = () => {
             },
           },
         );
-        // console.log(res.data.products);
 
         res.status === 201 && setProducts(res.data.products);
         setLoading(false);
@@ -184,23 +183,23 @@ const AllProducts = () => {
     });
   });
   return (
-    <div className="relative h-screen w-full p-2">
+    <>
       <SeoData title="All Products - BuzzBuy Seller" />
 
       {loading ? (
         <Spinner />
       ) : (
-        <div className="h-full">
+        <div className="relative h-full w-full p-2">
           <div className="flex items-center justify-between p-2">
-            <h1 className="text-[16px] font-[600] uppercase">products</h1>
+            <h1 className="font-semibold uppercase">products</h1>
             <Link
               to="/admin/dashboard/add-product"
-              className="rounded bg-primaryBlue px-4 py-2 font-[500] text-white shadow hover:shadow-lg"
+              className="rounded bg-primary px-4 py-2 font-medium text-white shadow hover:shadow-lg"
             >
               New Product
             </Link>
           </div>
-          <div className="h-[90%] w-full">
+          <div className="h-full w-full">
             <DataGrid
               rows={rows}
               columns={columns}
@@ -218,7 +217,7 @@ const AllProducts = () => {
           </div>
         </div>
       )}
-    </div>
+    </>
   );
 };
 

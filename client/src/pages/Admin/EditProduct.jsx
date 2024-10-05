@@ -559,12 +559,12 @@ const EditProduct = () => {
               <input
                 form="mainForm"
                 type="submit"
-                className="w-full cursor-pointer rounded bg-orange p-3 font-medium uppercase text-white shadow hover:shadow-lg"
+                className="w-full cursor-pointer rounded bg-primary p-3 font-medium uppercase text-white shadow hover:shadow-lg"
                 value="Update"
               />
               <Link
                 to="/admin/dashboard/all-products"
-                className="w-full cursor-pointer rounded bg-red-600 p-3 text-center font-medium uppercase text-white shadow hover:shadow-lg"
+                className="w-full cursor-pointer rounded bg-gray-400 p-3 text-center font-medium uppercase text-white shadow hover:shadow-lg"
               >
                 Cancel
               </Link>

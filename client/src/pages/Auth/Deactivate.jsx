@@ -9,7 +9,7 @@ const Deactivate = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
-  const { LogOut } = useAuth();
+  const { isAdmin, LogOut } = useAuth();
 
   const handleDeactivate = async (e) => {
     e.preventDefault();
@@ -103,7 +103,7 @@ const Deactivate = () => {
             </form>
           </div>
           <Link
-            to="/user/dashboard"
+            to={isAdmin ? "/admin/dashboard" : "/user/dashboard"}
             className="flex w-full items-center justify-center text-[14px] font-[600] uppercase text-primaryBlue"
           >
             No, Let me Stay

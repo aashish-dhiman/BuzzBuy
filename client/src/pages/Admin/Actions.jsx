@@ -64,7 +64,7 @@ const Actions = ({ id, name, updateDeletedProduct }) => {
 
         <button
           onClick={() => setOpen(true)}
-          className="rounded-full bg-red-100 p-[1px] text-red-600 hover:bg-red-200"
+          className="rounded-full bg-red-100 p-[1px] text-primary hover:bg-red-200"
         >
           <DeleteIcon />
         </button>

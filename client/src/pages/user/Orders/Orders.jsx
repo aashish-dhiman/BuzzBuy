@@ -43,10 +43,10 @@ const Orders = () => {
     <>
       <SeoData title="My Orders | BuzzBuy" />
 
-      <main className="w-full px-4 py-4 sm:px-10">
+      <main className="w-full p-2 md:p-6">
         {/* <!-- row --> */}
         {/* <!-- orders column --> */}
-        <div className="flex w-full gap-3.5">
+        <div className="flex w-full items-center">
           {loading ? (
             <Spinner />
           ) : (
@@ -54,7 +54,7 @@ const Orders = () => {
               {/* <!-- search bar --> */}
               <form
                 // onSubmit={searchOrders}
-                className="mx-auto mb-2 flex w-[100%] items-center justify-between rounded border bg-white hover:shadow-md sm:w-10/12"
+                className="mx-auto mb-2 flex w-full items-center justify-between rounded border bg-white hover:shadow-md sm:w-10/12"
               >
                 <input
                   value={search}
@@ -75,7 +75,7 @@ const Orders = () => {
               {/* <!-- search bar --> */}
 
               {orders?.length === 0 && (
-                <div className="flex flex-col items-center gap-2 rounded-sm bg-white p-10 shadow-md">
+                <div className="flex flex-col items-center gap-2 rounded-sm bg-white p-5 shadow-md sm:p-10">
                   <img
                     draggable="false"
                     src={orderNotFound}
@@ -85,7 +85,7 @@ const Orders = () => {
                   <span className="text-lg font-medium">
                     Sorry, no orders found
                   </span>
-                  <p>Place a new order from here</p>
+                  <p>Place a new order from here.</p>
                   <Link
                     to="/products"
                     className="mt-1 rounded-sm bg-primary px-4 py-2 text-sm uppercase text-white shadow hover:shadow-lg"
@@ -95,34 +95,36 @@ const Orders = () => {
                 </div>
               )}
 
-              {orders
-                ?.map((order) => {
-                  const {
-                    _id,
-                    orderStatus,
-                    buyer,
-                    createdAt,
-                    paymentId,
-                    shippingInfo,
-                    amount,
-                    products,
-                  } = order;
+              <div className="lg:px-20">
+                {orders
+                  ?.map((order) => {
+                    const {
+                      _id,
+                      orderStatus,
+                      buyer,
+                      createdAt,
+                      paymentId,
+                      shippingInfo,
+                      amount,
+                      products,
+                    } = order;
 
-                  return products.map((item, index) => (
-                    <OrderItem
-                      item={item}
-                      key={index}
-                      orderId={_id}
-                      orderStatus={orderStatus}
-                      createdAt={createdAt}
-                      paymentId={paymentId}
-                      buyer={buyer}
-                      shippingInfo={shippingInfo}
-                      amount={amount}
-                    />
-                  ));
-                })
-                .reverse()}
+                    return products.map((item, index) => (
+                      <OrderItem
+                        item={item}
+                        key={index}
+                        orderId={_id}
+                        orderStatus={orderStatus}
+                        createdAt={createdAt}
+                        paymentId={paymentId}
+                        buyer={buyer}
+                        shippingInfo={shippingInfo}
+                        amount={amount}
+                      />
+                    ));
+                  })
+                  .reverse()}
+              </div>
             </div>
           )}
         </div>

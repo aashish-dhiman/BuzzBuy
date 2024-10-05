@@ -42,10 +42,10 @@ const AdminOrders = () => {
     <>
       <SeoData title="Admin Orders | BuzzBuy" />
 
-      <main className="w-full px-4 py-4 sm:px-10">
+      <main className="w-full p-2 md:px-8">
         {/* <!-- row --> */}
         {/* <!-- orders column --> */}
-        <div className="flex w-full gap-3.5">
+        <div className="flex items-center w-full">
           {loading ? (
             <Spinner />
           ) : (
@@ -53,7 +53,7 @@ const AdminOrders = () => {
               {/* <!-- search hbar --> */}
               <form
                 // onSubmit={searchOrders}
-                className="mx-auto mb-2 flex w-[100%] items-center justify-between rounded border bg-white hover:shadow-md sm:w-10/12"
+                className="mx-auto mb-2 flex w-full items-center justify-between rounded border bg-white hover:shadow-md sm:w-10/12"
               >
                 <input
                   value={search}
@@ -84,7 +84,7 @@ const AdminOrders = () => {
                   <span className="text-lg font-medium">
                     Sorry, no orders found
                   </span>
-                  <p>Get some orders first</p>
+                  <p>Get some orders first!</p>
                 </div>
               )}
 

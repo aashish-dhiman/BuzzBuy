@@ -1,6 +1,7 @@
 import { useContext, createContext, useState, useEffect } from "react";
 import Cookies from "js-cookie";
 import { triggerCustomToast } from "../components/Toast/CustomToast";
+import axios from "axios";
 
 const AuthContext = createContext();
 
@@ -23,6 +24,19 @@ const AuthProvider = ({ children }) => {
       setIsAdmin(parsedData?.user?.role === 1);
     }
     setIsContextLoading(false);
+  }, []);
+
+  // make sure server is running when user visits the wesbsite
+  useEffect(() => {
+    const activateBackend = async () => {
+      try {
+        const res = await axios.get(`${import.meta.env.VITE_SERVER_URL}/`);
+        console.log("Backend: ", res.data);
+      } catch (error) {
+        console.log("error: ", error);
+      }
+    };
+    activateBackend();
   }, []);
   //Function to Logout user
   const LogOut = () => {

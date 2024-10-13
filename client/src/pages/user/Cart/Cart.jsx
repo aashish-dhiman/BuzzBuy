@@ -9,6 +9,8 @@ import PriceCard from "./PriceCard";
 import { useAuth } from "../../../context/auth";
 import { loadStripe } from "@stripe/stripe-js";
 import axios from "axios";
+import { triggerCustomToast } from "../../../components/Toast/CustomToast";
+import { useNavigate } from "react-router-dom";
 
 const Cart = () => {
   const { auth } = useAuth();
@@ -17,6 +19,8 @@ const Cart = () => {
   const secretKey = import.meta.env.VITE_STRIPE_SECRET_KEY;
   let frontendURL = window.location.origin; // Get the frontend URL
   const { cartItems, saveLaterItems } = useCart();
+
+  const navigate = useNavigate();
 
   //PAYMENT USING STRIPE
   const handlePayment = async () => {
@@ -50,7 +54,12 @@ const Cart = () => {
   };
 
   const placeOrderHandler = () => {
-    handlePayment();
+    if (!auth.token) {
+      triggerCustomToast("error", "Please login first!");
+      navigate("/login");
+      return;
+    }
+    // handlePayment();
   };
 
   return (
@@ -105,7 +114,7 @@ const Cart = () => {
                   disabled={cartItems.length < 1 ? true : false}
                   className={`${
                     cartItems.length < 1 ? "hidden" : "bg-primary"
-                  } mx-2 my-4 w-full rounded-sm py-4 font-medium text-white shadow hover:shadow-lg sm:mx-6 sm:w-1/3`}
+                  } mx-2 my-4 w-full rounded-sm py-4 font-medium text-white shadow hover:shadow-lg disabled:cursor-not-allowed disabled:opacity-50 sm:mx-6 sm:w-1/3`}
                 >
                   PLACE ORDER
                 </button>

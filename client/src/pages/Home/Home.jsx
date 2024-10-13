@@ -19,14 +19,14 @@ import { useState } from "react";
 import { IoClose } from "react-icons/io5";
 
 const Home = () => {
-  const [isInfoMessageVisible, setisInfoMessageVisible] = useState(true);
+  const [isInfoMessageVisible, setIsInfoMessageVisible] = useState(true);
   return (
     <>
       <SeoData title="Online Shopping Site for Mobiles, Electronics, Furniture, Grocery, Lifestyle, Books & More. Best Offers!" />
       <ScrollToTopOnRouteChange />
       <main className="flex flex-col items-center gap-3 px-2 py-3">
         {isInfoMessageVisible && (
-          <div className="flex w-full items-start justify-between gap-5 rounded-md bg-primary p-2 text-[8px] text-white md:text-sm">
+          <div className="flex w-full items-start justify-between gap-5 rounded-md bg-primary p-2 text-[10px] text-white md:text-sm">
             <p>
               Backend Initialization: Please wait a moment while the server
               starts up. If the loading indicator persists, it may take a minute
@@ -34,7 +34,7 @@ const Home = () => {
             </p>
             <span
               className="cursor-pointer hover:scale-[1.05]"
-              onClick={() => setisInfoMessageVisible(false)}
+              onClick={() => setIsInfoMessageVisible(false)}
             >
               <IoClose className="h-5 w-5" />
             </span>

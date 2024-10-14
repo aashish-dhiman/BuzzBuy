@@ -59,7 +59,7 @@ const Cart = () => {
       navigate("/login");
       return;
     }
-    // handlePayment();
+    handlePayment();
   };
 
   return (
